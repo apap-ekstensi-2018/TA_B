@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+    <body>
+        <h1 align="center">All Peminjaman</h1>
+        <table id="peminjamanTable" class="hover">
+        	<thead>
+        		<tr>
+        			<th>No</th>
+        			<th>Ruang</th>
+        			<th>Nama Mahasiswa</th>
+        			<th>Waktu Mulai</th>
+        			<th>Waktu selesai</th>
+        			<th>Tanggal Mulai</th>
+        			<th>Tanggal Selesai</th>
+        			<th>Tujuan</th>
+        			<th>Keterangan</th>
+        			<th>Jumlah Peserta</th>
+        			<th>Fasilitas</th>
+        			<th>Status</th>
+        			<th>Disetujui oleh</th>
+        			
+        	
+        		</tr>
+        		</thead>
+        	<tbody>
+                <tr th:each="peminjamanruang,iterationStatus: ${peminjamanruang}">
+                		<td th:text="' ' + ${iterationStatus.count}"></td>
+					<td th:text="' ' + ${peminjamanruang.id_ruang}"></td>
+					<td th:text="' ' + ${peminjamanruang.id_mahasiswa}"></td>
+					<td th:text="' ' + ${peminjamanruang.waktu_mulai}"></td>
+					<td th:text="' ' + ${peminjamanruang.waktu_selesai}"></td>
+					<td th:text="' ' + ${peminjamanruang.tanggal_mulai}"></td>
+					<td th:text="' ' + ${peminjamanruang.tanggal_selesai}"></td>
+					<td th:text="' ' + ${peminjamanruang.tujuan}"></td>
+					<td th:text="' ' + ${peminjamanruang.keterangan}"></td>
+					<td th:text="' ' + ${peminjamanruang.jumlah_peserta}"></td>
+					<td th:text="' ' + ${peminjamanruang.fasilitas}"></td>
+					<td th:text="${peminjamanruang.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
+					<td th:text="' ' + ${peminjamanruang.disetujui_oleh}"></td>	
+                </tr>
+                
+            </tbody>
+        </table>
+    </body>
+</html>

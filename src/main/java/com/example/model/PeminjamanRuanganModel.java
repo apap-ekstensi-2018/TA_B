@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 public class PeminjamanRuanganModel {
 	
 	private int id;
-	private int idRuang;
-	private int idMahasiswa;
-	private String waktuMulai;
-	private String waktuSelesai;
-	private String tanggalMulai;
-	private String tanggalSelesai;
+	private int id_ruang;
+	private int id_mahasiswa;
+	private String waktu_mulai;
+	private String waktu_selesai;
+	private String tanggal_mulai;
+	private String tanggal_selesai;
 	private String tujuan;
 	private String keterangan;
-	private int jumlahPeserta;
+	private int jumlah_peserta;
 	private String fasilitas;
-	private String isDisetujui;
-	private int disetujuiOleh;
+	private String is_disetujui;
+	private int disetujui_oleh;
 
 }
