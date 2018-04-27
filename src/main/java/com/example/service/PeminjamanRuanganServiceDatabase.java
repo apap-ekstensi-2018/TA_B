@@ -2,8 +2,10 @@ package com.example.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dao.PeminjamanRuanganMapper;
 import com.example.model.PeminjamanRuanganModel;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganService{
+	
+	@Autowired
+	PeminjamanRuanganMapper peminjamanRuanganMapper;
 
 	@Override
 	public PeminjamanRuanganModel selectPeminjamanRuangan(int id_peminjaman) {
@@ -31,8 +36,9 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	}
 
 	@Override
-	public void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuanganModel) {
-		// TODO Auto-generated method stub
+	public void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuangan) {
+		log.info("add peminjaman ruangan");
+		peminjamanRuanganMapper.addPeminjamanRuangan(peminjamanRuangan);
 		
 	}
 

@@ -12,7 +12,7 @@ public interface PeminjamanRuanganService {
 	
 	List<PeminjamanRuanganModel> selectAllPeminjamanRuanganByIdMahasiswa(int id_mahasiswa);
 	
-	void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuanganModel);
+	void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuangan);
 	
 	void updateStatusPeminjamanRuangan(int id_peminjaman, String status);
 }
