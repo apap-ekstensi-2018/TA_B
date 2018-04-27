@@ -13,26 +13,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganService{
-	
-	@Autowired
-	PeminjamanRuanganMapper peminjamanRuanganMapper;
 
-	@Override
+	@Autowired
+	private PeminjamanRuanganMapper peminjamanRuangMapper;	@Override
 	public PeminjamanRuanganModel selectPeminjamanRuangan(int id_peminjaman) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info ("select peminjaman with id peminjaman {}",id_peminjaman);
+		return peminjamanRuangMapper.selectPeminjamanRuangan(id_peminjaman);
 	}
 
 	@Override
 	public List<PeminjamanRuanganModel> selectAllPeminjamanRuangan() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info ("select all peminjaman");
+		return peminjamanRuangMapper.selectAllPeminjamanRuangan();
 	}
 
 	@Override
 	public List<PeminjamanRuanganModel> selectAllPeminjamanRuanganByIdMahasiswa(int id_mahasiswa) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info ("select all peminjaman by id Mahasiswa");
+		return peminjamanRuangMapper.selectAllPeminjamanRuanganByIdMahasiswa(id_mahasiswa);
 	}
 
 	@Override
@@ -47,6 +45,14 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 		// TODO Auto-generated method stub
 		
 	}
+	/*
+	@Override
+	public void selectIdPeminjamanRuangans() {
+		// TODO Auto-generated method stub
+		log.info ("select all peminjaman");
+		peminjamanRuangMapper.selectIdPeminjamanRuangans();
+	}*/
+
 	
 	
 }

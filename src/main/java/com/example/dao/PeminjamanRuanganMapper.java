@@ -15,8 +15,14 @@ public interface PeminjamanRuanganMapper {
 	@Select("select * from peminjaman_ruangan where id = #{id_peminjaman}")
     PeminjamanRuanganModel selectPeminjamanRuangan (@Param("id_peminjaman") int id_peminjaman);
 
-    @Select("select * from peminjaman_ruangan")
-    List<PeminjamanRuanganModel> selectAllPeminjamanRuangans ();
+    @Select("SELECT id, id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui, disetujui_oleh from peminjaman_ruangan")
+    List<PeminjamanRuanganModel> selectAllPeminjamanRuangan ();
+    
+    //@Select("SELECT id, id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui, disetujui_oleh from peminjaman_ruangan")
+    //void selectIdPeminjamanRuangans ();
+    
+    @Select ("select * from peminjaman_ruangan where id= #{id_mahasiswa}")
+    List<PeminjamanRuanganModel> selectAllPeminjamanRuanganByIdMahasiswa (@Param("id_mahasiswa")int id_mahasiswa);
 	
     @Insert("insert into peminjaman_ruangan (id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui)"
     		+ "values (#{idRuang}, #{idMahasiswa}, #{waktuMulai}, #{waktuSelesai}, #{tanggalMulai}, #{tanggalSelesai}, #{tujuan}, #{keterangan}, #{jumlahPeserta}, #{fasilitas}, #{isDisetujui})")
