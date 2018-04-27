@@ -33,7 +33,7 @@ public class PeminjamanRuanganController {
 			MahasiswaModel mahasiswa= mahasiswaService.selectMahasiswaById(peminjamanruang.getId_mahasiswa());
             model.addAttribute ("peminjamanruang", peminjamanruang);
             model.addAttribute("mahasiswa", mahasiswa);
-            return "view-peminjaman"; //buat html
+            return "view-peminjaman-budi"; //buat html
         } else {
         		model.addAttribute ("id_peminjaman", id_peminjaman);
             return "not-found";
@@ -50,7 +50,7 @@ public class PeminjamanRuanganController {
         model.addAttribute ("peminjamanruang", peminjamanruang);
         //model.addAttribute("mahasiswa", mahasiswa);
 
-        return "viewall";
+        return "viewall-history-peminjaman";
         //buat html 
     }
 	

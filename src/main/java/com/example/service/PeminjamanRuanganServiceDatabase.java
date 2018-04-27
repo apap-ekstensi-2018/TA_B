@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganService{
 
 	@Autowired
-	private PeminjamanRuanganMapper peminjamanRuangMapper;	@Override
+	private PeminjamanRuanganMapper peminjamanRuangMapper;	
+	
+	@Override
 	public PeminjamanRuanganModel selectPeminjamanRuangan(int id_peminjaman) {
 		log.info ("select peminjaman with id peminjaman {}",id_peminjaman);
 		return peminjamanRuangMapper.selectPeminjamanRuangan(id_peminjaman);
@@ -36,7 +38,7 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	@Override
 	public void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuangan) {
 		log.info("add peminjaman ruangan");
-		peminjamanRuanganMapper.addPeminjamanRuangan(peminjamanRuangan);
+		peminjamanRuangMapper.addPeminjamanRuangan(peminjamanRuangan);
 		
 	}
 
