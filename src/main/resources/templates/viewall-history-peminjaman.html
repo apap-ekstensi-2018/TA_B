@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
@@ -8,28 +8,32 @@
 	<link rel="icon" href="/images/favicon-s.ico" type="image/ico" />
 	 
 	<title>Sistem Informasi Ruangan</title>
-	 
+
 	<!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
-    <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- dataTables -->
+    <!-- Datatables -->
+    <link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    
     
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="nav-md footer_fixed">
+<body class="nav-md ">
 	<div class="container body">
 		<div class="main_container">
 		
 			<div   th:replace = "fragments/fragment :: navigation" ></div>
 	  
 			<!-- page content -->
-			<div class="right_col" role="main">
+			<div class="right_col" role="main" style="min-height: 1162px;">
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
@@ -43,19 +47,20 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-								<h2> Tabel Peminjaman Ruangan</h2>
-							</div>
-							<div class="x-context">
-								<div class="table-responsive">
-									<table class="table table-striped jambo_table bulk_action">
+									<h2> Tabel Riwayat Peminjaman Ruangan</h2>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x-content">
+							
+									<table id="datatable" class="table table-striped jambo_table bulk_action">
 										<thead>
-                          					<tr class="headings">
+	                        					<tr class="headings">
 						                         <th class="column-title">No</th>
 						                         <th class="column-title">Ruang </th>
 						                         <th class="column-title">Nama Mahasiswa</th>
 						                         <th class="column-title">NPM</th>
-						                         <th class="column-title">Waktu Mulai</th>
-						                         <th class="column-title">Waktu Selesai</th>
+							                     <th class="column-title">Waktu Mulai</th>
+							                     <th class="column-title">Waktu Selesai</th>
 						                         <th class="column-title">Tanggal Mulai</th>
 						                         <th class="column-title">Tanggal Selesai</th>
 						                         <th class="column-title">Tujuan</th>
@@ -66,28 +71,32 @@
 						                         <th class="column-title">Disetujui Oleh</th>
 						                         <th class="column-title no-link last"><span class="nobr">Action</span>
 						                         </th>
-                          					</tr>
-                          				</thead>
-                          				<tbody>
-                          					<tr class="pointer">
-                          						<td class="a-center ">1</td>
-                          						<td class="a-center ">A</td>
-                          						<td class="a-center ">setiap</td>
-                          						<td class="a-center ">saat</td>
-                          						<td class="a-center ">setiap</td>
-                          						<td class="a-center ">waktu</td>
-                          						<td class="a-center ">kuingat</td>
-                          						<td class="a-center ">dirimu</td>
-                          						<td class="a-center ">setiap</td>
-                          						<td class="a-center ">saat</td>
-                          						<td class="a-center ">setiap</td>
-                          						<td class="a-center ">waktu</td>
-                          						<td class="a-center ">kuingin</td>
-                          						<td class="a-center ">berjumpa</td>
-                          						<td class="a-center ">View</td>
-                          					</tr>
-                          				</tbody>
-										
+	                        					</tr>
+	                        				</thead>
+                        					<tbody>
+	                       					<tr class="pointer" th:each="peminjamanruang,iterationStatus: ${peminjamanruang}">
+	         	           						<td th:text="' ' + ${iterationStatus.count}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.id_ruang}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.id_mahasiswa}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.id_mahasiswa}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.waktu_mulai}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.waktu_selesai}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.tanggal_mulai}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.tanggal_selesai}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.tujuan}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.keterangan}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.jumlah_peserta}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.fasilitas}"></td>
+	                        						<td th:text="${peminjamanruang.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.disetujui_oleh}"></td>
+	                        						<td class="a-center ">
+	                        							<a th:href="'/peminjaman/view/' + ${peminjamanruang.id}"> 
+	                        								<button type="submit" class="btn btn-success">View</button>
+	                        								</a>
+	                        							
+	                        						</td>
+	                        					</tr>
+	                        				</tbody>
 									</table>
 								</div>
 							</div>
@@ -113,16 +122,21 @@
 			<!-- /footer content -->
 		</div>
 	</div>
+	
+	
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="/vendors/nprogress/nprogress.js"></script>
     <!-- jQuery custom content scroller -->
-    <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	 <!-- Datatables -->
+    <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
