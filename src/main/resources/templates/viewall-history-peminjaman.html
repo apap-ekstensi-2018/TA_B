@@ -90,9 +90,8 @@
 	                        						<td th:text="${peminjamanruang.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
 	                        						<td th:text="' ' + ${peminjamanruang.disetujui_oleh}"></td>
 	                        						<td class="a-center ">
-	                        							<a th:href="'/peminjaman/view/' + ${peminjamanruang.id}"> 
-	                        								<button type="submit" class="btn btn-success">View</button>
-	                        								</a>
+	                        							<a class="blue" th:href="'/peminjaman/view/' + ${peminjamanruang.id}"> View
+	                        							</a>
 	                        							
 	                        						</td>
 	                        					</tr>

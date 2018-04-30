@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.model.DosenModel;
 import com.example.model.MahasiswaModel;
 import com.example.model.PeminjamanRuanganModel;
+import com.example.service.DosenService;
 import com.example.service.MahasiswaService;
 import com.example.service.PeminjamanRuanganService;
 
@@ -24,6 +26,8 @@ public class PeminjamanRuanganController {
 	PeminjamanRuanganService peminjamanRuanganService;
 	@Autowired
 	MahasiswaService mahasiswaService;
+	@Autowired
+	DosenService dosenService;
 	
 	@RequestMapping("/peminjaman/view/{id_peminjaman}")
 	public String view(Model model, @PathVariable(value ="id_peminjaman", required = false)String id_peminjaman){
@@ -31,8 +35,11 @@ public class PeminjamanRuanganController {
 		PeminjamanRuanganModel peminjamanruang = peminjamanRuanganService.selectPeminjamanRuangan(idp);
 		if (peminjamanruang != null) {
 			MahasiswaModel mahasiswa= mahasiswaService.selectMahasiswaById(peminjamanruang.getId_mahasiswa());
+			DosenModel dosen = dosenService.selectDosenById(peminjamanruang.getDisetujui_oleh());
+			
             model.addAttribute ("peminjamanruang", peminjamanruang);
             model.addAttribute("mahasiswa", mahasiswa);
+            model.addAttribute("dosen", dosen);
             return "view-peminjaman"; //buat html
         } else {
         		model.addAttribute ("id_peminjaman", id_peminjaman);
