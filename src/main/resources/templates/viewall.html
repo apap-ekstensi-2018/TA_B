@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>View All Ruangan</title>
+        <script type="text/javascript" charset="utf8" src="/js/DataTables/jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/DataTables/jquery.dataTables.min.css"></link>
+		<script type="text/javascript" charset="utf8" src="/js/DataTables/jquery.dataTables.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"></link>
+		<script> 
+		$(document).ready( function () {
+		    $('#table_id').DataTable();
+		} );
+		</script>
+    </head>
+    <body>
+        <h1>Ruangan</h1>
+        
+        <table id="table_id" class="table table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nama Ruangan</th>
+            <th>Kapasitas Ruangan</th>
+        </tr>
+    </thead>
+    <tbody>
+		<div th:each="ruangan,iterationStatus: ${ruangans}">
+    		
+        <tr>
+            <td th:text="${ruangan.id}"></td>
+            <td th:text="${ruangan.nama}"></td>
+            <td th:text="${ruangan.kapasitas}"></td>
+        </tr>
+        </div>
+    </tbody>
+</table>
+        
+    </body>
+</html>
