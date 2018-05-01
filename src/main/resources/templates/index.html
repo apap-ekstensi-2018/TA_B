@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/images/favicon-s.ico" type="image/ico" />
+	 
+	<title>Sistem Informasi Ruangan</title>
+	 
+	<!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <link href="../css/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="../css/calendar2/pignose.calendar.min.css" rel="stylesheet">
+	
+	
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md footer_fixed">
+	<div class="container body">
+		<div class="main_container">
+		
+			<div   th:replace = "fragments/fragment :: navigation" ></div>
+	  
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>HOME </h3>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="row">
+						<div class="col-md-8">
+						</div>
+						
+						<div class="col-md-4">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Calendar</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      					</li>
+                      				</ul>
+                      				<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class="year-calendar"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-8">
+						</div>
+						
+						<div class="col-md-4">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2> Portal Usage <small>Self-Service Portal enable users</small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      					</li>
+                      				</ul>
+                      				<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class>
+										<div class="">
+						                    <ul class="to_do">
+						                      <li>
+						                        <i class="fa fa-check text-success"></i> 
+						                        	Bisa ngapain aja di portal ini
+						                      </li>
+						                      <li>
+						                       <i class="fa fa-check text-success"></i>
+						                       Create email address for new intern
+						                      </li>
+						                      <li>
+						                        <i class="fa fa-check text-success"></i>
+						                        Have IT fix the network printer
+						                      </li>
+						                      <li>
+						                        <i class="fa fa-check text-success"></i>
+						                        Copy backups to offsite location
+						                      </li>
+						                      <li>
+						                        <i class="fa fa-check text-success"></i>
+						                        Food truck fixie locavors mcsweeney
+						                      </li>
+						                      <li>
+						                       <i class="fa fa-check text-success"></i>
+						                       Food truck fixie locavors mcsweeney
+						                      </li>
+						                    </ul>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+	            
+	            
+	            
+				</div>
+			</div>
+			<!-- /page content -->
+	 
+			<!-- footer content -->
+		        <footer>
+		          <div class="pull-right">
+		            <div   th:replace = "fragments/fragment :: footer" ></div>
+		          </div>
+		          <div class="clearfix"></div>
+		        </footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- jQuery custom content scroller -->
+    <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- init calendar view -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    
+    
+    <!-- scripit init-->
+    <script src="../js/calendar-2/semantic.ui.min.js"></script>
+    <!-- scripit init-->
+    <script src="../js/calendar-2/prism.min.js"></script>
+    <!-- scripit init-->
+    <script src="../js/calendar-2/pignose.calendar.min.js"></script>
+    <!-- scripit init-->
+    <script src="../js/calendar-2/pignose.init.js"></script>
+	
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+
+</body>
+</html>
