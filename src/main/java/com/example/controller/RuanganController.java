@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,16 +52,36 @@ public class RuanganController {
 	
 	
 	@RequestMapping("/ruang/tambah")
-	public String add(){
-		// TODO Auto-generated method stub
-		return null;
+	public String add(@ModelAttribute("ruang") RuanganModel ruanganModel, Model model){
+		if (ruanganModel.getNama() == null) {
+			return "add-ruang-form";
+		} else {
+			ruanganService.addRuangan(ruanganModel);
+			//cek sudah masuk apa belum
+			RuanganModel existing = ruanganService.selectRuanganByNama(ruanganModel.getNama());
+			if (ruanganModel.getNama().equals(existing.getNama())) {
+				return "add-ruang-sukses";
+			} else {
+				return "add-ruang-gagal";
+			}
+		}
+		
 	}
 	
 	@RequestMapping("/ruang/ubah/{id_ruangan}")
-	public String update(){
-		// TODO Auto-generated method stub
+	public String update(@PathVariable(value="id_ruangan") int id_ruangan, Model model, @ModelAttribute("ruang") RuanganModel ruanganModel){
+		RuanganModel extRuang = ruanganService.selectRuangan(id_ruangan);
+		
+		if(extRuang.getNama()==null) {
+			if(extRuang == null) {
+				return "ruang-not-found";
+			}
+			model.addAttribute("ruang", extRuang);
+		}
 		return null;
 	}
+	
+	
 	
 	@RequestMapping("​/ruang/hapus/{id_ruangan}")
 	public String delete(){

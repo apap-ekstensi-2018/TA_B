@@ -8,6 +8,8 @@ public interface RuanganService {
 
 	RuanganModel selectRuangan(int id);
 	
+	RuanganModel selectRuanganByNama (String nama);
+	
 	List<RuanganModel> selectAllRuangans();
 	
 	void addRuangan(RuanganModel ruanganModel);
