@@ -18,7 +18,7 @@ public interface RuanganMapper {
 
     @Select("select * from ruang")
     List<RuanganModel> selectAllRuangans ();
-    
+
     @Select("select * from ruang where nama like #{nama}")
     RuanganModel selectRuanganByNama(@Param("nama")String nama);
     
@@ -29,4 +29,4 @@ public interface RuanganMapper {
     void updateRuangan(RuanganModel ruanganModel);
     
 
-}
+	}

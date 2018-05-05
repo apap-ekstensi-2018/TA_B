@@ -7,20 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.dto.PeminjamanRuanganDTO;
-import com.example.model.DosenModel;
 import com.example.model.MahasiswaModel;
 import com.example.model.PegawaiModel;
 import com.example.model.PeminjamanRuanganModel;
 import com.example.model.RuanganModel;
-import com.example.service.DosenService;
 import com.example.service.MahasiswaService;
 import com.example.service.PegawaiService;
+
 import com.example.service.PeminjamanRuanganService;
 import com.example.service.RuanganService;
 
@@ -90,7 +85,6 @@ public class PeminjamanRuanganController {
         	
         	peminjamanRuanganDTOList.add(peminjamanRuanganDTO);
         }
-        
         
         model.addAttribute ("peminjamanruang", peminjamanRuanganDTOList);
         //model.addAttribute("mahasiswa", mahasiswa);

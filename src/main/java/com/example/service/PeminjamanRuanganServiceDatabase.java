@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,13 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 		log.info ("select all peminjaman");
 		peminjamanRuangMapper.selectIdPeminjamanRuangans();
 	}*/
+
+	@Override
+	public ArrayList<PeminjamanRuanganModel> selectArrayAllPeminjamanRuangan() {
+		log.info ("select all peminjaman");
+		return peminjamanRuangMapper.selectArrayAllPeminjamanRuangan();
+	
+	}
 
 	
 	

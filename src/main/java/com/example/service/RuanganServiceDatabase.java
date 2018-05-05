@@ -21,12 +21,12 @@ public class RuanganServiceDatabase implements RuanganService{
 	public RuanganModel selectRuangan(int id_ruang) {
 			return ruanganMapper.selectRuangan(id_ruang);
 	}
+
 	
 	@Override
 	public RuanganModel selectRuanganByNama(String nama) {
 			return ruanganMapper.selectRuanganByNama(nama);
 	}
-
 	@Override
 	public List<RuanganModel> selectAllRuangans() {
         	return ruanganMapper.selectAllRuangans ();
@@ -42,7 +42,6 @@ public class RuanganServiceDatabase implements RuanganService{
 	@Override
 	public void updateRuangan(RuanganModel ruanganModel) {
 		ruanganMapper.updateRuangan(ruanganModel);
-		
 	}
 
 	@Override
@@ -50,5 +49,7 @@ public class RuanganServiceDatabase implements RuanganService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }
