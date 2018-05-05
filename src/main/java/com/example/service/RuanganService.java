@@ -6,7 +6,7 @@ import com.example.model.RuanganModel;
 
 public interface RuanganService {
 
-	RuanganModel selectRuangan(int id_ruangan);
+	RuanganModel selectRuangan(int id);
 	
 	List<RuanganModel> selectAllRuangans();
 	

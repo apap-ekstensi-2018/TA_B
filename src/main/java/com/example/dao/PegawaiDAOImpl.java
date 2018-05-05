@@ -19,4 +19,11 @@ public class PegawaiDAOImpl implements PegawaiDAO{
 		return pegawai;
 	}
 
+	@Override
+	public PegawaiModel selectPegawaiById(int id) {
+		PegawaiModel pegawai = restTemplate.getForObject(
+				"https://apap-fasilkom.herokuapp.com/api/staf/view/id/" + id, PegawaiModel.class);
+		return pegawai;
+	}
+
 }
