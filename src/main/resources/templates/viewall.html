@@ -16,24 +16,24 @@
         <h1>Ruangan</h1>
         
         <table id="table_id" class="table table-bordered" style="width:100%">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nama Ruangan</th>
-            <th>Kapasitas Ruangan</th>
-        </tr>
-    </thead>
-    <tbody>
-		<div th:each="ruangan,iterationStatus: ${ruangans}">
-    		
-        <tr>
-            <td th:text="${ruangan.id}"></td>
-            <td th:text="${ruangan.nama}"></td>
-            <td th:text="${ruangan.kapasitas}"></td>
-        </tr>
-        </div>
-    </tbody>
-</table>
+	    <thead>
+	        <tr>
+	            <th>Id</th>
+	            <th>Nama Ruangan</th>
+	            <th>Kapasitas Ruangan</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+			<div th:each="ruangan,iterationStatus: ${ruangans}">
+	    		
+	        <tr>
+	            <td th:text="${ruangan.id}"></td>
+	            <td th:text="${ruangan.nama}"></td>
+	            <td th:text="${ruangan.kapasitas}"></td>
+	        </tr>
+	        </div>
+	    </tbody>
+		</table>
         
     </body>
 </html>

@@ -30,7 +30,7 @@ public class RuanganController {
 			
 			if(ruangan != null) {
 				model.addAttribute("ruangan", ruangan);
-				return "view";
+				return "view-ruangan";
 			}
 			else {
 				model.addAttribute("id_ruangan", id);
@@ -46,7 +46,7 @@ public class RuanganController {
 	        List<RuanganModel> ruangans = ruanganService.selectAllRuangans();
 	        model.addAttribute ("ruangans", ruangans);
 
-	        return "viewall";
+	        return "viewall-ruangan";
 	}
 	
 	

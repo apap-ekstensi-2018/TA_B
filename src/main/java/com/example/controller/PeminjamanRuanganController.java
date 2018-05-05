@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+<<<<<<< Updated upstream
 import com.example.dto.PeminjamanRuanganDTO;
 import com.example.model.DosenModel;
 import com.example.model.MahasiswaModel;
@@ -21,6 +22,13 @@ import com.example.model.RuanganModel;
 import com.example.service.DosenService;
 import com.example.service.MahasiswaService;
 import com.example.service.PegawaiService;
+=======
+import com.example.model.DosenModel;
+import com.example.model.MahasiswaModel;
+import com.example.model.PeminjamanRuanganModel;
+import com.example.service.DosenService;
+import com.example.service.MahasiswaService;
+>>>>>>> Stashed changes
 import com.example.service.PeminjamanRuanganService;
 import com.example.service.RuanganService;
 
@@ -64,6 +72,7 @@ public class PeminjamanRuanganController {
 	@RequestMapping("/peminjaman/viewall")
 	public String viewAll(Model model)
     {
+<<<<<<< Updated upstream
         List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuangan();
         List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
         
@@ -93,6 +102,15 @@ public class PeminjamanRuanganController {
         
         
         model.addAttribute ("peminjamanruang", peminjamanRuanganDTOList);
+=======
+        List<PeminjamanRuanganModel> peminjamanruang = peminjamanRuanganService.selectAllPeminjamanRuangan();
+        //ArrayList<PeminjamanRuanganModel> arrpeminjamanruang = peminjamanRuanganService.selectArrayAllPeminjamanRuangan();
+        //MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswaById(arrpeminjamanruang.get(2));
+        //PeminjamanRuanganModel peminjamanr = peminjamanRuanganService.selectIdPeminjamanRuangans();
+        //MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswaById(peminjamanr.getId_mahasiswa());
+        //MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswaById(peminjamanruang.ge);
+        model.addAttribute ("peminjamanruang", peminjamanruang);
+>>>>>>> Stashed changes
         //model.addAttribute("mahasiswa", mahasiswa);
 
         return "viewall-history-peminjaman";
