@@ -51,9 +51,9 @@
 									<br/>
                     						<form class="form-horizontal form-label-left input_mask">
                     							<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">ID Ruangan : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Ruangan : </label>
 												<div class="col-md-3 col-sm-3 col-xs-3">
-													<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.id_ruang}"/>
+													<input type="text" class="form-control" readonly="readonly"  th:value="${ruangan.nama}"/>
 												</div>
 											</div>
 											<div class="item form-group">
@@ -128,7 +128,7 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Disetujui Oleh : </label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" readonly="readonly"  th:value="${dosen.nama}"/>
+													<input type="text" class="form-control" readonly="readonly"  th:value="${pegawai.nama}"/>
 												</div>
 											</div>
                     						</form>
