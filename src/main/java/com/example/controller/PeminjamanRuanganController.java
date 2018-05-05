@@ -24,7 +24,7 @@ public class PeminjamanRuanganController {
 	PeminjamanRuanganService peminjamanRuanganService;
 	@Autowired
 	MahasiswaService mahasiswaService;
-	
+		
 	@RequestMapping("/peminjaman/view/{id_peminjaman}")
 	public String view(Model model, @PathVariable(value ="id_peminjaman", required = false)String id_peminjaman){
 		int idp = Integer.parseInt(id_peminjaman);
