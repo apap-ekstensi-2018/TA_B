@@ -21,22 +21,27 @@ public class RuanganServiceDatabase implements RuanganService{
 	public RuanganModel selectRuangan(int id_ruang) {
 			return ruanganMapper.selectRuangan(id_ruang);
 	}
+	
+	@Override
+	public RuanganModel selectRuanganByNama(String nama) {
+			return ruanganMapper.selectRuanganByNama(nama);
+	}
 
 	@Override
 	public List<RuanganModel> selectAllRuangans() {
-        return ruanganMapper.selectAllRuangans ();
+        	return ruanganMapper.selectAllRuangans ();
 	}
 	
 
 	@Override
 	public void addRuangan(RuanganModel ruanganModel) {
-		// TODO Auto-generated method stub
+			ruanganMapper.addRuangan(ruanganModel);
 		
 	}
 
 	@Override
 	public void updateRuangan(RuanganModel ruanganModel) {
-		// TODO Auto-generated method stub
+		ruanganMapper.updateRuangan(ruanganModel);
 		
 	}
 
