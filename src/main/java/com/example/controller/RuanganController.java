@@ -69,18 +69,29 @@ public class RuanganController {
 	}
 	
 	@RequestMapping("/ruang/ubah/{id_ruangan}")
-	public String update(@PathVariable(value="id_ruangan") int id_ruangan, Model model, @ModelAttribute("ruang") RuanganModel ruanganModel){
-		RuanganModel extRuang = ruanganService.selectRuangan(id_ruangan);
+	public String update(@PathVariable(value="id_ruangan") String id_ruangan, Model model, @ModelAttribute("ruang") RuanganModel ruanganModel){
 		
-		if(extRuang.getNama()==null) {
+		int idr = Integer.parseInt(id_ruangan);
+		RuanganModel extRuang = ruanganService.selectRuangan(idr);
+		
+		if(ruanganModel.getNama()==null) {
 			if(extRuang == null) {
 				return "ruang-not-found";
+			}else {
+				model.addAttribute("ruang", extRuang);
+				return "update-ruang-form";
 			}
-			model.addAttribute("ruang", extRuang);
+		}else {
+			ruanganService.updateRuangan(ruanganModel);
+			//return "update-ruang-sukses";
+			RuanganModel existing = ruanganService.selectRuanganByNama(ruanganModel.getNama());
+			if (ruanganModel.getNama().equals(existing.getNama())) {
+				return "update-ruang-sukses";
+			} else {
+				return "update-ruang-gagal";
+			}
 		}
-		return null;
 	}
-	
 	
 	
 	@RequestMapping("​/ruang/hapus/{id_ruangan}")
