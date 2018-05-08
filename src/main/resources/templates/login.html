@@ -16,7 +16,7 @@
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
-    <link href="../vendors/animate.css/animate.min.css" rel="stylesheet">
+    <!-- <link href="../vendors/animate.css/animate.min.css" rel="stylesheet"> -->
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+            <form th:action="@{/login}" method="post">
             	  <div>
                   <h1><i class="fa fa-institution"></i> SISTEM INFORMASI RUANGAN</h1>
               </div>
@@ -38,14 +38,20 @@
               <div class="clearfix"></div>
               
               <h1>Login Form</h1>
+              	<div th:if="${param.error}">
+				 Invalid username and password.
+				 </div>
+				 <div th:if="${param.logout}">
+				You have been logged out.
+				 </div>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="username" name="username"/>
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" class="form-control" placeholder="password" name="password"/>
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Log in</a>
+                <input type="submit" value="Sign In"/>
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 
