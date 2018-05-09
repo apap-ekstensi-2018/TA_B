@@ -16,7 +16,7 @@ public class RuanganRestController {
 	RuanganService ruanganService;
 	
 	@RequestMapping("/ruang/view/{id}")
-	 public RuanganModel view(@PathVariable(value="npm") int id)
+	 public RuanganModel view(@PathVariable(value="id") int id)
 	{
 		RuanganModel ruang = ruanganService.selectRuangan(id);
 		return ruang;
