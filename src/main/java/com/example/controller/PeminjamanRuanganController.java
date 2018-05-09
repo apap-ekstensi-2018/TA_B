@@ -93,9 +93,17 @@ public class PeminjamanRuanganController {
         //buat html 
     }
 	
-	@RequestMapping("/peminjaman/riwayat")
-	public String viewByIdMahasiswa(Model model){
-		return null;
+	@RequestMapping("/peminjaman/riwayat/{npm}")
+	public String viewByIdMahasiswa(Model model, @PathVariable(value ="npm", required = false)String npm){
+		int idm = Integer.parseInt(npm);
+		//int idp = Integer.parseInt(id_mahasiswa);
+		MahasiswaModel mahasiswapjm = mahasiswaService.selectMahasiswaByNpm(idm);
+		List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuanganByIdMahasiswa(mahasiswapjm.getId());
+		//List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
+		
+		model.addAttribute("peminjamanruangList", peminjamanruangList);
+		model.addAttribute("mahasiswa", mahasiswapjm);
+		return "viewall-history-Saya";
 	}
 	
 	@RequestMapping("/peminjaman/tambah")
