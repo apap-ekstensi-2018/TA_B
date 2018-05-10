@@ -1,111 +1,128 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="icon" href="/images/favicon-s.ico" type="image/ico" />
-	
-    <title>Fragment</title>
-    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/images/favicon-s.ico" type="image/ico" />
+
+<title>Fragment</title>
+
 </head>
 <body>
-    <div th:fragment="navigation">
-    		<div class="col-md-3 left_col menu_fixed">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="/" class="site_title"><i class="fa fa-institution"></i> <span>SI RUANG</span></a>
-            </div>
+	<div th:fragment="navigation">
+		<div class="col-md-3 left_col menu_fixed">
+			<div class="left_col scroll-view">
+				<div class="navbar nav_title" style="border: 0;">
+					<a href="/" class="site_title"><i class="fa fa-institution"></i>
+						<span>SI RUANG</span></a>
+				</div>
 
-            <div class="clearfix"></div>
+				<div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="/images/user.png" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Budi Indrawan</h2>
-                <h2>16060954754</h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
+				<!-- menu profile quick info -->
+				<div class="profile clearfix">
+					<div class="profile_pic">
+						<img src="/images/user.png" alt="..."
+							class="img-circle profile_img">
+					</div>
+					<div class="profile_info">
+						<span>Welcome,</span>
+						<h2>Budi Indrawan</h2>
+						<h2 th:text="${#httpServletRequest.remoteUser}"></h2>
+						<p>
+							<small th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}">Mahasiswa</small>
+							<small th:if="${#httpServletRequest.isUserInRole('DOSEN')}">Dosen</small>
+							<small th:if="${#httpServletRequest.isUserInRole('STAF')}">Staf</small>
+						</p>
+					</div>
+				</div>
+				<!-- /menu profile quick info -->
 
-            <br />
-            
-			<!-- sidebar menu -->
-	        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-	            <div class="menu_section">
-	              
-	                <ul class="nav side-menu">
-	                    <li><a href="/"><i  class="fa fa-home"></i> Home </a>
-	                    </li>
-	                    <li><a><i class="fa fa-edit"></i> Pengajuan Ruangan <span class="fa fa-chevron-down"></span></a>
-	                        <ul class="nav child_menu">
-	                            <li><a href="#">Form Pengajuan</a></li>
-	                            <li><a href="#">Status Pengajuan</a></li>
-	                            <li><a href="#">History Pengajuan</a></li>
-	                            <li><a href="#">Ubah Status Peminjaman</a></li>
-	                            <li><a href="/peminjaman/viewall">All History Pengajuan</a></li>
-	                            
-	                        </ul>
-	                    </li>
-	                    <li><a><i class="fa fa-building-o"></i> Ruangan <span class="fa fa-chevron-down"></span></a>
-	                        <ul class="nav child_menu">
-	                            <li><a href="/ruang/tambah">Tambah Ruangan</a></li>
-	                            <li><a href="/ruang/ubah/{id_ruangan}">Ubah Ruangan</a></li>
-	                            <li><a href="#">Hapus Ruangan</a></li>
-	                            <li><a href="#l">Available Ruangan</a></li>
-	                            <li  th:if="${#httpServletRequest.isUserInRole('ADMIN')}" ><a href="/ruang/viewall">View All Ruangan</a></li>
-	                        </ul>
-	                    </li>
-	                </ul>
-	            </div>
-	        </div>
-		  <!-- /sidebar menu -->
-	   </div>
-	  </div>
-	  
-	  <!-- top navigation -->
-	    <div class="top_nav">
-	      <div class="nav_menu">
-	        <nav>
-	          <div class="nav toggle">
-	            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-	          </div>
-	
-	          <ul class="nav navbar-nav navbar-right">
-	            <li class="">
-	              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	                <img src="/images/user.png" alt="">Budi Indrawan
-	                <span class=" fa fa-angle-down"></span>
-	              </a>
-	              <ul class="dropdown-menu dropdown-usermenu pull-right">
-	                <li><a href="javascript:;"> Profile</a></li>
-	                <li>
-	                  <a href="javascript:;"> Settings</a>
-	                </li>
-	                <li><a href="javascript:;">Help</a></li>
-	                <li>
-	                	<form th:action="@{/logout}" method="post">
-							<input type="submit" value="Sign Out"/>
-	                	</form>
-	                </li>
-	              </ul>
-	            </li>
-	          </ul>
-	        </nav>
-	      </div>
-	    </div>
-	    <!-- /top navigation -->
-    </div>
+				<br />
 
-    <div  th:fragment="footer">
-    		<div class="pull-right">
-			&copy; <script>document.write(new Date().getFullYear())</script> <a class="green" href="www.ui.ac.id">Universitas Indonesia</a>, APAP 2017/2018 SI Ekstensi 
-		</div>        
-    </div>
+				<!-- sidebar menu -->
+				<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+					<div class="menu_section">
+
+						<ul class="nav side-menu">
+							<li><a href="/"><i class="fa fa-home"></i> Home </a></li>
+							<li><a><i class="fa fa-edit"></i> Pengajuan Ruangan <span
+									class="fa fa-chevron-down"></span></a>
+								<ul class="nav child_menu">
+									<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a
+										href="#">Form Pengajuan</a></li>
+									<li
+										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
+										href="#">Status Pengajuan</a></li>
+									<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a
+										href="#">History Pengajuan</a></li>
+									<li th:if="${#httpServletRequest.isUserInRole('STAF')}"><a
+										href="#">Ubah Status Peminjaman</a></li>
+									<li th:if="${#httpServletRequest.isUserInRole('STAF')}"><a
+										href="/peminjaman/viewall">All History Pengajuan</a></li>
+
+								</ul></li>
+							<li><a><i class="fa fa-building-o"></i> Ruangan <span
+									class="fa fa-chevron-down"></span></a>
+								<ul class="nav child_menu">
+									<li th:if="${#httpServletRequest.isUserInRole('STAF')}"><a
+										href="/ruang/tambah">Tambah Ruangan</a></li>
+									<li
+										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
+										href="#">Available Ruangan</a></li>
+									<li
+										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
+										href="/ruang/viewall">View All Ruangan</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /sidebar menu -->
+			</div>
+		</div>
+
+		<!-- top navigation -->
+		<div class="top_nav">
+			<div class="nav_menu">
+				<nav>
+					<div class="nav toggle">
+						<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+					</div>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li class=""><a href="javascript:;"
+							class="user-profile dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false"> <img src="/images/user.png" alt="">Budi
+								Indrawan <span class=" fa fa-angle-down"></span>
+						</a>
+							<ul class="dropdown-menu dropdown-usermenu pull-right">
+								<li><a href="javascript:;"> Profile</a></li>
+								<li><a href="javascript:;"> Settings</a></li>
+								<li><a href="javascript:;">Help</a></li>
+								<li>
+									<form th:action="@{/logout}" method="post">
+										<input type="submit" value="Sign Out" />
+									</form>
+								</li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- /top navigation -->
+	</div>
+
+	<div th:fragment="footer">
+		<div class="pull-right">
+			&copy;
+			<script>
+				document.write(new Date().getFullYear())
+			</script>
+			<a class="green" href="www.ui.ac.id">Universitas Indonesia</a>, APAP
+			2017/2018 SI Ekstensi
+		</div>
+	</div>
 </body>
 </html>
