@@ -63,6 +63,13 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	
 	}
 
+//	@Override
+//	public List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm) {
+//		//log.info(("select all mahasiswaByNpm");
+//		return selectPeminjamanRuanganByNpm(npm);
+	//}
+	
+
 	
 	
 }
