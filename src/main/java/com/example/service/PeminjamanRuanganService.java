@@ -20,4 +20,6 @@ public interface PeminjamanRuanganService {
 	void updateStatusPeminjamanRuangan(int id_peminjaman, String status);
 	
 	//void selectIdPeminjamanRuangans ();
+	
+	//List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm);
 }

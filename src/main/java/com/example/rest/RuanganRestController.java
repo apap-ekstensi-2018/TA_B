@@ -1,6 +1,7 @@
 package com.example.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +16,10 @@ public class RuanganRestController {
 	RuanganService ruanganService;
 	
 	@RequestMapping("/ruang/view/{id}")
-	 public RuanganModel view(){
-		// TODO Auto-generated method stub
-		return null;
+	 public RuanganModel view(@PathVariable(value="id") int id)
+	{
+		RuanganModel ruang = ruanganService.selectRuangan(id);
+		return ruang;
 	}
 
 }

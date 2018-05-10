@@ -28,4 +28,7 @@ public interface PeminjamanRuanganMapper {
     @Insert("insert into peminjaman_ruangan (id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui)"
     		+ "values (#{idRuang}, #{idMahasiswa}, #{waktuMulai}, #{waktuSelesai}, #{tanggalMulai}, #{tanggalSelesai}, #{tujuan}, #{keterangan}, #{jumlahPeserta}, #{fasilitas}, #{isDisetujui})")
     void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuangan);
+    
+    @Select ("select * from peminjaman_ruangan where npm= #{npm}")
+    List<PeminjamanRuanganModel> selectAllPeminjamanRuanganByNpm (@Param("npm")int npm);
 }

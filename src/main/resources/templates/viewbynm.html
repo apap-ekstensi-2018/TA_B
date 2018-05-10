@@ -47,7 +47,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Tabel Ruangan</h2>
+									<h2> Tabel Riwayat Peminjaman Ruangan</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
@@ -55,36 +55,44 @@
 									<table id="datatable" class="table table-striped jambo_table bulk_action">
 										<thead>
 	                        					<tr class="headings">
-						                         <th class="column-title">Id</th>
-						                         <th class="column-title">Nama Ruangan </th>
-						                         <th class="column-title">Kapasitas Ruangan</th>
+						                         <th class="column-title">No</th>
+						                         <th class="column-title">Ruang </th>
+						                         <th class="column-title">Nama Mahasiswa</th>
+						                         <th class="column-title">NPM</th>
+							                     <th class="column-title">Waktu Mulai</th>
+							                     <th class="column-title">Waktu Selesai</th>
+						                         <th class="column-title">Tanggal Mulai</th>
+						                         <th class="column-title">Tanggal Selesai</th>
+						                         <th class="column-title">Tujuan</th>
+						                         <th class="column-title">Keterangan</th>
+						                         <th class="column-title">Jumlah Peserta</th>
+						                         <th class="column-title">Fasilitas</th>
+						                         <th class="column-title">Status</th>
+						                         <th class="column-title">Disetujui Oleh</th>
 						                         <th class="column-title no-link last"><span class="nobr">Action</span>
 						                         </th>
 	                        					</tr>
 	                        				</thead>
                         					<tbody>
-	                       					<tr class="pointer" th:each="ruangan,iterationStatus: ${ruangans}">
-	         	        
-	                        						<td th:text="' ' + ${ruangan.id}"></td>
-	                        						<td th:text="' ' + ${ruangan.nama}"></td>
-	                        						<td th:text="' ' + ${ruangan.kapasitas}"></td>
+	                       					<tr class="pointer" th:each="peminjamanruang,iterationStatus: ${peminjamanruang}">
+	         	           						<td th:text="' ' + ${iterationStatus.count}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.ruangan}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.nama_mahasiswa}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.npm_mahasiswa}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.waktu_mulai}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.waktu_selesai}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.tanggal_mulai}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.tanggal_selesai}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.tujuan}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.keterangan}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.jumlah_peserta}"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.fasilitas}"></td>
+	                        						<td th:text="${peminjamanbyMhs.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
+	                        						<td th:text="' ' + ${peminjamanbyMhs.disetujui_oleh}"></td>
 	                        						<td class="a-center ">
-						<a th:href="'/ruang/view/' + ${ruangan.id}" class="btn btn-primary btn-xs">
-	                        								<i class="fa fa-folder"></i> View</a>
-	                        							<a th:href="'/ruang/ubah/' + ${ruangan.id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-	                        							<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-
-
-
-
-
-
-
-
-
-
-
-
+	                        							<a class="blue" th:href="'/peminjaman/view/' + ${peminjamanbyMhs.id}"> View
+	                        							</a>
+	                        							
 	                        						</td>
 	                        					</tr>
 	                        				</tbody>
