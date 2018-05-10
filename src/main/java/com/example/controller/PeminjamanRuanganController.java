@@ -96,12 +96,36 @@ public class PeminjamanRuanganController {
 	@RequestMapping("/peminjaman/riwayat/{npm}")
 	public String viewByIdMahasiswa(Model model, @PathVariable(value ="npm", required = false)String npm){
 		int idm = Integer.parseInt(npm);
-		//int idp = Integer.parseInt(id_mahasiswa);
+		
 		MahasiswaModel mahasiswapjm = mahasiswaService.selectMahasiswaByNpm(idm);
 		List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuanganByIdMahasiswa(mahasiswapjm.getId());
-		//List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
+		List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
 		
-		model.addAttribute("peminjamanruangList", peminjamanruangList);
+		for (PeminjamanRuanganModel peminjamanRuangan : peminjamanruangList ) {
+			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswaById(peminjamanRuangan.getId_mahasiswa());
+	        	RuanganModel ruangan = ruanganService.selectRuangan(peminjamanRuangan.getId_ruang());
+	        	PegawaiModel pegawai = pegawaiService.selectPegawaiById(peminjamanRuangan.getDisetujui_oleh());
+			
+		PeminjamanRuanganDTO peminjamanRuanganDTO = new PeminjamanRuanganDTO();
+	    	peminjamanRuanganDTO.setId(peminjamanRuangan.getId());
+	    	peminjamanRuanganDTO.setRuangan(ruangan.getNama());
+	    	peminjamanRuanganDTO.setNpm_mahasiswa(mahasiswa.getNpm());
+	    	peminjamanRuanganDTO.setNama_mahasiswa(mahasiswa.getNama());
+	    	peminjamanRuanganDTO.setWaktu_mulai(peminjamanRuangan.getWaktu_mulai());
+	    	peminjamanRuanganDTO.setWaktu_selesai(peminjamanRuangan.getWaktu_selesai());
+	    	peminjamanRuanganDTO.setTanggal_mulai(peminjamanRuangan.getTanggal_mulai());
+	    	peminjamanRuanganDTO.setTanggal_selesai(peminjamanRuangan.getTanggal_selesai());
+	    	peminjamanRuanganDTO.setTujuan(peminjamanRuangan.getTujuan());
+	    	peminjamanRuanganDTO.setKeterangan(peminjamanRuangan.getKeterangan());
+	    	peminjamanRuanganDTO.setJumlah_peserta(peminjamanRuangan.getJumlah_peserta());
+	    	peminjamanRuanganDTO.setFasilitas(peminjamanRuangan.getFasilitas());
+	    	peminjamanRuanganDTO.setIs_disetujui(peminjamanRuangan.getIs_disetujui());
+	    	peminjamanRuanganDTO.setDisetujui_oleh(pegawai.getNama());
+    	
+	    	peminjamanRuanganDTOList.add(peminjamanRuanganDTO);
+		}
+		
+		model.addAttribute("peminjamanruangList", peminjamanRuanganDTOList);
 		model.addAttribute("mahasiswa", mahasiswapjm);
 		return "viewall-history-Saya";
 	}
