@@ -52,7 +52,7 @@
 									class="fa fa-chevron-down"></span></a>
 								<ul class="nav child_menu">
 									<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a
-										href="#">Form Pengajuan</a></li>
+										href="/peminjaman/tambah">Form Pengajuan</a></li>
 									<li
 										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
 										href="#">Status Pengajuan</a></li>

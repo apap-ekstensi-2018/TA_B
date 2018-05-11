@@ -22,7 +22,7 @@ public class MahasiswaDAOImpl implements MahasiswaDAO{
 	}
 
 	@Override
-	public MahasiswaModel selectMahasiswaByNpm(int npm) {
+	public MahasiswaModel selectMahasiswaByNpm(String npm) {
 		MahasiswaModel mahasiswa = restTemplate.getForObject(
 				"https://apap-fasilkom.herokuapp.com/api/mahasiswa/view/npm/" + npm, MahasiswaModel.class);
 		

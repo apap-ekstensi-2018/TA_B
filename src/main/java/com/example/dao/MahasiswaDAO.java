@@ -6,6 +6,6 @@ public interface MahasiswaDAO {
 	
 	MahasiswaModel selectMahasiswaById(int id_mahasiswa);
 	
-	MahasiswaModel selectMahasiswaByNpm(int npm);
+	MahasiswaModel selectMahasiswaByNpm(String npm);
 
 }

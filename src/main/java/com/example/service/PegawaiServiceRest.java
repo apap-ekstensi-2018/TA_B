@@ -16,7 +16,7 @@ public class PegawaiServiceRest implements PegawaiService{
 	PegawaiDAO pegawaiDAO;
 	
 	@Override
-	public PegawaiModel selectPegawaiByNip(int nip) {
+	public PegawaiModel selectPegawaiByNip(String nip) {
 		log.info ("REST - select Pegawai with nip {}", nip);
 		return pegawaiDAO.selectPegawaiByNip(nip);
 	}

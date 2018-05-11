@@ -22,7 +22,7 @@ public class MahasiswaServiceRest implements MahasiswaService{
 	}
 
 	@Override
-	public MahasiswaModel selectMahasiswaByNpm(int npm) {
+	public MahasiswaModel selectMahasiswaByNpm(String npm) {
 		log.info ("REST - select mahasiswa with npm {}", npm);
 		return mahasiswaDAO.selectMahasiswaByNpm(npm);
 	}
