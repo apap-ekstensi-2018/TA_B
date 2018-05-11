@@ -1,6 +1,8 @@
 package com.example.service;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,12 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 		log.info ("select all peminjaman");
 		return peminjamanRuangMapper.selectArrayAllPeminjamanRuangan();
 	
+	}
+
+	@Override
+	public List<PeminjamanRuanganModel> selectAllPeminjamanRuanganByDateTime(String tanggal_mulai, String tanggal_selesai, String waktu_mulai, String waktu_selesai) {
+		log.info ("select all peminjaman by date in {}, date out{}, time in {}, timeout {}",tanggal_mulai,tanggal_selesai,waktu_mulai,waktu_selesai);
+		return peminjamanRuangMapper.selectAllPeminjamanRuanganByDateTime(tanggal_mulai, tanggal_selesai, waktu_mulai, waktu_selesai);
 	}
 
 //	@Override
