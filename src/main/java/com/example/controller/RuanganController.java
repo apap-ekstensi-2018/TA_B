@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.model.RuanganModel;
 import com.example.service.RuanganService;
@@ -93,12 +94,32 @@ public class RuanganController {
 		}
 	}
 	
-	
-	@RequestMapping("​/ruang/hapus/{id_ruangan}")
-	public String delete(){
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping("/ruang/hapus/{id_ruangan}")
+	//@ResponseBody
+	public String delete(RuanganModel ruanganModel, @PathVariable(value="id_ruangan") String id_ruangan) {
+		int idruang = Integer.parseInt(id_ruangan);
+		RuanganModel existingRuang = ruanganService.selectRuangan(idruang);
+		
+		if (existingRuang != null) {
+			ruanganService.deleteRuangan(idruang);
+    		return "delete-ruang-sukses";
+    	}else {
+            return "ruang-not-found";
+    	}
 	}
 	
-	
+//	@RequestMapping("​/ruang/hapus/{id_ruangan}")
+//	public String delete(RuanganModel ruanganModel, @PathVariable(value = "id_ruangan") String id_ruangan)
+//	{
+//		int idruang = Integer.parseInt(id_ruangan);
+//		RuanganModel existingRuang = ruanganService.selectRuangan(idruang);
+//		
+//		if (existingRuang != null) {
+//			ruanganService.deleteRuangan(ruanganModel);
+//    		return "delete-ruang-sukses";
+//    	}else {
+//            return "ruang-not-found";
+//    	}
+//	}
+		
 }
