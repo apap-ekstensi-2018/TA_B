@@ -21,7 +21,7 @@ public interface PeminjamanRuanganService {
 	
 	void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuangan);
 	
-	void updateStatusPeminjamanRuangan(int id_peminjaman, String status);
+	void updateStatusPeminjamanRuangan(int id_peminjaman, String status, int id_pegawai);
 	
 	int checkAvailabilityRuangan(PeminjamanRuanganModel peminjamanRuangan);
 	
