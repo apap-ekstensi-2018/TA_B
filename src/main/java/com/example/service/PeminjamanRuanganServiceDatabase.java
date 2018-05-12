@@ -75,7 +75,9 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	public int checkAvailabilityRuangan(PeminjamanRuanganModel peminjamanRuangan) {
 		log.info("cek daftar peminajaman ruang");
 		return peminjamanRuangMapper.checkAvailabilityRuangan(peminjamanRuangan);
-	}//	@Override
+	}
+	
+	//	@Override
 //	public List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm) {
 //		//log.info(("select all mahasiswaByNpm");
 //		return selectPeminjamanRuanganByNpm(npm);

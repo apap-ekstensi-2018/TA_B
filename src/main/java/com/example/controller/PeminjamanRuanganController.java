@@ -1,9 +1,6 @@
 package com.example.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +46,8 @@ public class PeminjamanRuanganController {
 		
 	@RequestMapping("/peminjaman/view/{id_peminjaman}")
 	public String view(Model model, @PathVariable(value ="id_peminjaman", required = false)String id_peminjaman){
+		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
 		int idp = Integer.parseInt(id_peminjaman);
 		PeminjamanRuanganModel peminjamanruang = peminjamanRuanganService.selectPeminjamanRuangan(idp);
 		if (peminjamanruang != null) {
@@ -74,6 +73,8 @@ public class PeminjamanRuanganController {
 	@RequestMapping("/peminjaman/viewall")
 	public String viewAll(Model model)
     {
+		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
         List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuangan();
         List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
         
@@ -116,7 +117,8 @@ public class PeminjamanRuanganController {
 	@RequestMapping("/peminjaman/riwayat/{npm}")
 	public String viewByIdMahasiswa(Model model, @PathVariable(value ="npm", required = false)String npm){
 		//int idm = Integer.parseInt(npm);
-		
+		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
 		MahasiswaModel mahasiswapjm = mahasiswaService.selectMahasiswaByNpm(npm);
 		List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuanganByIdMahasiswa(mahasiswapjm.getId());
 		List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
@@ -153,6 +155,7 @@ public class PeminjamanRuanganController {
 	@RequestMapping("/peminjaman/tambah")
 	public String add(@ModelAttribute("peminjamanruang") PeminjamanRuanganModel peminjamanruang, Model model){
 		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
 		if(peminjamanruang.getId_ruang() ==  0){
 			List<RuanganModel> ruangan = ruanganService.selectAllRuangans();
 			model.addAttribute("ruangan", ruangan);
@@ -189,6 +192,9 @@ public class PeminjamanRuanganController {
 			@RequestParam(value = "tanggal_akhir", required =false) String tanggal_akhir,
 			@RequestParam(value = "waktu_akhir", required =false) String waktu_akhir) 
 	{	
+		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
+		
 		if(tanggal_awal==null || tanggal_akhir==null || tanggal_awal=="" || tanggal_akhir=="" ||
 				waktu_awal==null || waktu_akhir==null || waktu_awal=="" || waktu_akhir=="") {
 				return "cari-ruang-form";

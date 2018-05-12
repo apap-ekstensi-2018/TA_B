@@ -29,7 +29,7 @@
 					</div>
 					<div class="profile_info">
 						<span>Welcome,</span>
-						<h2>Budi Indrawan</h2>
+						<h2 th:text="${userAccount.name}"></h2>
 						<h2 th:text="${#httpServletRequest.remoteUser}"></h2>
 						<p>
 							<small th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}">Mahasiswa</small>
@@ -94,14 +94,15 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class=""><a href="javascript:;"
 							class="user-profile dropdown-toggle" data-toggle="dropdown"
-							aria-expanded="false"> <img src="/images/user.png" alt="">Budi
-								Indrawan <span class=" fa fa-angle-down"></span>
+							aria-expanded="false"> <img src="/images/user.png" alt="">
+							<b th:text="${userAccount.name}"></b>
+							<span class=" fa fa-angle-down" ></span>
 						</a>
 							<ul class="dropdown-menu dropdown-usermenu pull-right">
 								<li><a href="javascript:;"> Profile</a></li>
 								<li><a href="javascript:;"> Settings</a></li>
 								<li><a href="javascript:;">Help</a></li>
-								<li><a href="/login?logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+								<li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 							</ul></li>
 					</ul>
 				</nav>
