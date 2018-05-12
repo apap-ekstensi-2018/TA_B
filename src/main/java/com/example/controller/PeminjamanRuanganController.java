@@ -169,7 +169,10 @@ public class PeminjamanRuanganController {
 				if(peminjamanruang.getJumlah_peserta() > ruangan.getKapasitas()) {
 					model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
 					return "add-peminjaman-gagal";
-				} else {
+				} else if(peminjamanruang.getJumlah_peserta() == 0){
+					model.addAttribute("statusGagal", "Jumlah peserta harus diisikan");
+					return "add-peminjaman-gagal";
+				}else {
 					peminjamanruang.setId_mahasiswa(userAccount.getId());
 					peminjamanruang.setIs_disetujui("2");
 					peminjamanRuanganService.addPeminjamanRuangan(peminjamanruang);
