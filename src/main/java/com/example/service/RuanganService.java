@@ -16,6 +16,7 @@ public interface RuanganService {
 	
 	void updateRuangan(RuanganModel ruanganModel);
 	
-	void deleteRuangan(int id_ruangan);
+	void deleteRuangan(RuanganModel ruanganModel);
 	
+	void deleteRuangan(int id_ruangan);
 }

@@ -131,6 +131,13 @@
 													<input type="text" class="form-control" readonly="readonly"  th:value="${pegawai.nama}"/>
 												</div>
 											</div>
+											<div class="item form-group" th:if="${#httpServletRequest.isUserInRole('STAF')}">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Persetujuan : </label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<button class="btn" type="submit" value="save">Disetujui</button>
+													<button class="btn" type="submit" value="save">Ditolak</button>
+												</div>
+											</div>
                     						</form>
                     						
 								

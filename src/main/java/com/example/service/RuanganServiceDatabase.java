@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.dao.RuanganMapper;
 import com.example.model.RuanganModel;
 
@@ -46,10 +45,14 @@ public class RuanganServiceDatabase implements RuanganService{
 
 	@Override
 	public void deleteRuangan(int id_ruang) {
-		// TODO Auto-generated method stub
-		
+    	ruanganMapper.deleteRuangan(id_ruang);
 	}
 
-	
+
+	@Override
+	public void deleteRuangan(RuanganModel ruanganModel) {
+		ruanganMapper.deleteRuangan(ruanganModel.getId());
+		
+	}
 
 }

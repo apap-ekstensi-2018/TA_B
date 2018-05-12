@@ -13,7 +13,7 @@ public class PegawaiDAOImpl implements PegawaiDAO{
 	private RestTemplate restTemplate;
 		
 	@Override
-	public PegawaiModel selectPegawaiByNip(int nip) {
+	public PegawaiModel selectPegawaiByNip(String nip) {
 		PegawaiModel pegawai = restTemplate.getForObject(
 				"https://apap-fasilkom.herokuapp.com/api/staf/view/nip/" + nip, PegawaiModel.class);
 		return pegawai;
