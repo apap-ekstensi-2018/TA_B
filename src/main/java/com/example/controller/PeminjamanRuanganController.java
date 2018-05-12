@@ -170,7 +170,7 @@ public class PeminjamanRuanganController {
 					model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
 					return "add-peminjaman-gagal";
 				} else if(peminjamanruang.getJumlah_peserta() == 0){
-					model.addAttribute("statusGagal", "Jumlah peserta harus diisikan");
+					model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
 					return "add-peminjaman-gagal";
 				}else {
 					peminjamanruang.setId_mahasiswa(userAccount.getId());
