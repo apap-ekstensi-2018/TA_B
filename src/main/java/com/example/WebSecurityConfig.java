@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		 .authorizeRequests()
 		 .antMatchers("/resource/**","/api/ruang/view/**").permitAll()
 		 .antMatchers("/peminjaman/*/konfirmasi", "/peminjaman/viewall", "/ruang/ubah/**", "/ruang/tambah", "/ruang/hapus/**", "/ruang/view/**").hasRole("STAF")
-		 .antMatchers("/peminjaman/riwayat", "/peminjaman/tambah", "/ruang/view/**").hasRole("MAHASISWA")
+		 .antMatchers("/peminjaman/riwayat", "/peminjaman/tambah").hasRole("MAHASISWA")
 		 .antMatchers("/ruang/viewall","​/peminjaman/tersedia","/peminjaman/view/**").hasAnyRole("STAF","MAHASISWA")
 		 .anyRequest().authenticated()
 		 .and()
