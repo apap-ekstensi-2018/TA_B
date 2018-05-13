@@ -31,6 +31,11 @@ public class RuanganServiceDatabase implements RuanganService{
         	return ruanganMapper.selectAllRuangans ();
 	}
 	
+	@Override
+	public RuanganModel selectRuanganByNamaByNotId(String nama, int id) {
+		
+		return ruanganMapper.selectRuanganByNamaByNotId(nama, id);
+	}
 
 	@Override
 	public void addRuangan(RuanganModel ruanganModel) {
@@ -54,5 +59,8 @@ public class RuanganServiceDatabase implements RuanganService{
 		ruanganMapper.deleteRuangan(ruanganModel.getId());
 		
 	}
+
+
+	
 
 }

@@ -68,16 +68,16 @@ public class RuanganController {
 		if (ruanganModel.getNama() == null) {
 			return "add-ruang-form";
 		} else {
-			ruanganService.addRuangan(ruanganModel);
-			//cek sudah masuk apa belum
 			RuanganModel existing = ruanganService.selectRuanganByNama(ruanganModel.getNama());
-			if (ruanganModel.getNama().equals(existing.getNama())) {
-				return "add-ruang-sukses";
-			} else {
+			if(existing != null) {
+				model.addAttribute("ruang", ruanganModel);
 				return "add-ruang-gagal";
+			}else {
+				ruanganService.addRuangan(ruanganModel);
 			}
 		}
-		
+		model.addAttribute("ruang", ruanganModel);
+		return "add-ruang-sukses";
 	}
 	
 	@RequestMapping("/ruang/ubah/{id_ruangan}")
@@ -85,26 +85,28 @@ public class RuanganController {
 		UserAccountModel userAccount = userAccountService.selectUserAccount();
 		model.addAttribute("userAccount", userAccount);
 		
-		int idr = Integer.parseInt(id_ruangan);
-		RuanganModel extRuang = ruanganService.selectRuangan(idr);
+		int parsed_idRuangan = Integer.parseInt(id_ruangan);
+		RuanganModel extRuangById = ruanganService.selectRuangan(parsed_idRuangan);
 		
 		if(ruanganModel.getNama()==null) {
-			if(extRuang == null) {
+			if(extRuangById == null) {
 				return "ruang-not-found";
 			}else {
-				model.addAttribute("ruang", extRuang);
+				model.addAttribute("ruang", extRuangById);
 				return "update-ruang-form";
 			}
 		}else {
-			ruanganService.updateRuangan(ruanganModel);
-			//return "update-ruang-sukses";
-			RuanganModel existing = ruanganService.selectRuanganByNama(ruanganModel.getNama());
-			if (ruanganModel.getNama().equals(existing.getNama())) {
-				return "update-ruang-sukses";
-			} else {
+			RuanganModel extRuangByNama = ruanganService.selectRuanganByNamaByNotId(ruanganModel.getNama(), ruanganModel.getId());
+			if(extRuangByNama !=  null) {
+				model.addAttribute("ruangExt", extRuangById);
+				model.addAttribute("ruangReq", extRuangByNama);
 				return "update-ruang-gagal";
+			}else {
+				ruanganService.updateRuangan(ruanganModel);
 			}
 		}
+		model.addAttribute("ruang", ruanganModel);
+		return "update-ruang-sukses";
 	}
 	
 	@RequestMapping("/ruang/hapus/{id_ruangan}")
