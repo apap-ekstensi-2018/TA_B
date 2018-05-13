@@ -187,9 +187,29 @@ public class PeminjamanRuanganController {
 					model.addAttribute("ruangan", ruangan_baru);
 					model.addAttribute("peminjamanaruang", peminjamanruang);
 					return "add-peminjaman-gagal";
-					model.addAttribute("ruangan", ruangan_baru);
+				} else {
 					
+					if(peminjamanruang.getJumlah_peserta() > ruanganGagal.getKapasitas()) {
+						model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
+						model.addAttribute("ruanganGagal", ruanganGagal);
+						model.addAttribute("ruangan", ruangan_baru);
+						model.addAttribute("peminjamanaruang", peminjamanruang);
+						return "add-peminjaman-gagal";
+					} else if(peminjamanruang.getJumlah_peserta() == 0){
+						model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
+						model.addAttribute("ruanganGagal", ruanganGagal);
+						model.addAttribute("ruangan", ruangan_baru);
+						model.addAttribute("peminjamanaruang", peminjamanruang);
+						return "add-peminjaman-gagal";
+					}else {
+						model.addAttribute("ruangan", ruangan_baru);
+						peminjamanruang.setId_mahasiswa(userAccount.getId());
+						peminjamanruang.setIs_disetujui("2");
+						peminjamanRuanganService.addPeminjamanRuangan(peminjamanruang);
+						
+					}
 				}
+					
 			}
 			
 		}
