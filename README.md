@@ -1,6 +1,6 @@
 # SIRUANG - Sistem Informasi Ruangan
 
-	Dalam melaksanakan aktivitasnya sebagai institusi pendidikan, Fakultas Ilmu
+Dalam melaksanakan aktivitasnya sebagai institusi pendidikan, Fakultas Ilmu
 Komputer memiliki berbagai macam ruangan yang dapat digunakan. Mulai dari ruang kelas, ruang pertemuan, lab, hingga aula. Ruangan-ruangan ini digunakan sebagai tempat agar kegiatan pembelajaran oleh dosen berlangsung. Maka dari itu, Fakultas Ilmu Komputer membutuhkan sebuah Sistem Informasi Ruangan atau dapat disingkat SIRUANG. SIRUANG diharapkan dapat membantu mahasiswa dalam proses peminjaman ruangan. Mulai dari mengajukan peminjaman hingga penyetujuan ruangan. Selain itu, SIRUANG diharapkan dapat membantu pegawai fakultas dalam mengelola peminjaman ruangan secara lebih efektif dan efisien.
 
 ## Base URL
