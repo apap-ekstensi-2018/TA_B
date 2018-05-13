@@ -172,7 +172,10 @@ public class PeminjamanRuanganController {
 				if(peminjamanruang.getJumlah_peserta() > ruangan.getKapasitas()) {
 					model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
 					return "add-peminjaman-gagal";
-				} else {
+				} else if(peminjamanruang.getJumlah_peserta() == 0){
+					model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
+					return "add-peminjaman-gagal";
+				}else {
 					peminjamanruang.setId_mahasiswa(userAccount.getId());
 					peminjamanruang.setIs_disetujui("2");
 					peminjamanRuanganService.addPeminjamanRuangan(peminjamanruang);
@@ -183,9 +186,19 @@ public class PeminjamanRuanganController {
 	}
 	
 	@RequestMapping("/peminjaman/{id_peminjaman}/konfirmasi")
-	public String updateStatus(){
-		// TODO Auto-generated method stub
-		return null;
+	public String updateStatus(Model model, @PathVariable(value ="id_peminjaman", required = false)String id_peminjaman, 
+			@RequestParam(value = "confirmStatus", required =false) String confirmStatus){
+		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
+		
+		int id = Integer.parseInt(id_peminjaman);
+		
+		if(confirmStatus.equals("disetujui")){
+			peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "1", userAccount.getId());
+		} else {
+			peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "0", userAccount.getId());
+		}		
+		return "confirmation-peminjaman-sukses";
 	}
 	
 	@RequestMapping("/peminjaman/tersedia")

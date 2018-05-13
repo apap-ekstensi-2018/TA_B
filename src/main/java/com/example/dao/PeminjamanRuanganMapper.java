@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.model.PeminjamanRuanganModel;
 
@@ -41,4 +42,7 @@ public interface PeminjamanRuanganMapper {
     		+ "AND (tanggal_mulai between #{tanggal_mulai} and #{tanggal_selesai} OR tanggal_selesai between #{tanggal_mulai} and #{tanggal_selesai} OR (tanggal_mulai < #{tanggal_mulai} AND tanggal_selesai > #{tanggal_selesai}))"
     		+ "AND (id NOT IN (SELECT id FROM peminjaman_ruangan WHERE (tanggal_selesai = #{tanggal_mulai} AND waktu_selesai < #{waktu_mulai}) OR (tanggal_mulai = #{tanggal_selesai} AND waktu_mulai > #{waktu_selesai})))")
     int checkAvailabilityRuangan(PeminjamanRuanganModel peminjamanRuangan);
+    
+    @Update("update peminjaman_ruangan set is_disetujui = #{status}, disetujui_oleh = #{id_pegawai} where id = #{id_peminjaman}")
+    void updateStatusPeminjamanRuangan(@Param("id_peminjaman")int id_peminjaman, @Param("status")String status, @Param("id_pegawai")int id_pegawai);
 }

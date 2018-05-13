@@ -46,9 +46,9 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	}
 
 	@Override
-	public void updateStatusPeminjamanRuangan(int id_peminjaman, String status) {
-		// TODO Auto-generated method stub
-		
+	public void updateStatusPeminjamanRuangan(int id_peminjaman, String status, int id_pegawai) {
+		log.info("update status peminjaman ruangan");
+		peminjamanRuangMapper.updateStatusPeminjamanRuangan(id_peminjaman, status, id_pegawai);		
 	}
 	/*
 	@Override
