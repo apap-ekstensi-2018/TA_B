@@ -35,7 +35,7 @@ Mengembalikan object ruangan berdasarkan id ruang. Object dalam bentuk JSON.
 }
 ```
 
-#Team
+##Team
 
 * Budi Indrawan (1606954754)
 * Poppy Rosaline (1606954956)
