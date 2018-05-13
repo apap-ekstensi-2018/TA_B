@@ -22,7 +22,7 @@
     <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="nav-md footer_fixed">
+<body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
 		
@@ -33,7 +33,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>View Pengajuan Peminjaman</h3>
+							<h3>Lihat Pengajuan Peminjaman</h3>
 						</div>
 					</div>
 					
@@ -44,12 +44,15 @@
 						<div class="col-md-8 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Peminjaman Ruangan</h2>
+									<h2> Pengajuan Peminjaman Ruangan </h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
 									<br/>
-                    						<form class="form-horizontal form-label-left input_mask">
+                    						<form class="form-horizontal form-label-left input_mask" method="post" action="" th:action="@{/peminjaman/{path}(path=${peminjamanruang.id})} + '/konfirmasi'">
+                    							<div>
+	                    							<input hidden="" type="hidden" class="form-control" th:value="${peminjamanruang.id}"/>
+	                    						</div>
                     							<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Ruangan : </label>
 												<div class="col-md-3 col-sm-3 col-xs-3">
@@ -122,36 +125,30 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Status Peminjaman : </label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"/>
+													<input type="text" class="form-control" readonly="readonly"  th:if="${peminjamanruang.is_disetujui} == '1'" value="Telah Disetujui"/>
+													<input type="text" class="form-control" readonly="readonly"  th:if="${peminjamanruang.is_disetujui} == '0'" value="Ditolak"/>
+													<input type="text" class="form-control" readonly="readonly"  th:if="${peminjamanruang.is_disetujui} == '2'" value="Pending"/>
 												</div>
 											</div>
-											<div class="item form-group">
+											<div class="item form-group" th:if="${peminjamanruang.is_disetujui} != '2'" >
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Disetujui Oleh : </label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" readonly="readonly"  th:value="${pegawai.nama}"/>
 												</div>
 											</div>
-											<div class="item form-group" th:if="${#httpServletRequest.isUserInRole('STAF')}">
+											<div class="item form-group" th:if="${#httpServletRequest.isUserInRole('STAF')} AND ${peminjamanruang.is_disetujui} == '2'">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Persetujuan : </label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<button class="btn" type="submit" value="save">Disetujui</button>
-													<button class="btn" type="submit" value="save">Ditolak</button>
+													<button type="submit" class="btn btn-round btn-success" name="confirmStatus" value="save">Disetujui</button>
+													<button type="submit" class="btn btn-round btn-danger" name="confirmStatus" value="save">Ditolak</button>
 												</div>
 											</div>
                     						</form>
                     						
-								
-								
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					
-					
-	            
-	            
-	            
 				</div>
 			</div>
 			<!-- /page content -->

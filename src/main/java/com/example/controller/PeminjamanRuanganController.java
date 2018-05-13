@@ -108,31 +108,29 @@ public class PeminjamanRuanganController {
         }
         
         model.addAttribute ("peminjamanruang", peminjamanRuanganDTOList);
-        //model.addAttribute("mahasiswa", mahasiswa);
+       
 
         return "viewall-history-peminjaman";
-        //buat html 
+       
     }
 	
-	@RequestMapping("/peminjaman/riwayat/{npm}")
-	public String viewByIdMahasiswa(Model model, @PathVariable(value ="npm", required = false)String npm){
-		//int idm = Integer.parseInt(npm);
+	@RequestMapping("/peminjaman/riwayat")
+	public String viewByIdMahasiswa(Model model){
 		UserAccountModel userAccount = userAccountService.selectUserAccount();
 		model.addAttribute("userAccount", userAccount);
-		MahasiswaModel mahasiswapjm = mahasiswaService.selectMahasiswaByNpm(npm);
-		List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuanganByIdMahasiswa(mahasiswapjm.getId());
+		
+		
+		List<PeminjamanRuanganModel> peminjamanruangList = peminjamanRuanganService.selectAllPeminjamanRuanganByIdMahasiswa(userAccount.getId());
 		List<PeminjamanRuanganDTO> peminjamanRuanganDTOList = new ArrayList<>();
 		
 		for (PeminjamanRuanganModel peminjamanRuangan : peminjamanruangList ) {
 			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswaById(peminjamanRuangan.getId_mahasiswa());
 	        	RuanganModel ruangan = ruanganService.selectRuangan(peminjamanRuangan.getId_ruang());
-	        	PegawaiModel pegawai = pegawaiService.selectPegawaiById(peminjamanRuangan.getDisetujui_oleh());
+	        	
 			
 		PeminjamanRuanganDTO peminjamanRuanganDTO = new PeminjamanRuanganDTO();
 	    	peminjamanRuanganDTO.setId(peminjamanRuangan.getId());
 	    	peminjamanRuanganDTO.setRuangan(ruangan.getNama());
-	    	peminjamanRuanganDTO.setNpm_mahasiswa(mahasiswa.getNpm());
-	    	peminjamanRuanganDTO.setNama_mahasiswa(mahasiswa.getNama());
 	    	peminjamanRuanganDTO.setWaktu_mulai(peminjamanRuangan.getWaktu_mulai());
 	    	peminjamanRuanganDTO.setWaktu_selesai(peminjamanRuangan.getWaktu_selesai());
 	    	peminjamanRuanganDTO.setTanggal_mulai(peminjamanRuangan.getTanggal_mulai());
@@ -142,14 +140,19 @@ public class PeminjamanRuanganController {
 	    	peminjamanRuanganDTO.setJumlah_peserta(peminjamanRuangan.getJumlah_peserta());
 	    	peminjamanRuanganDTO.setFasilitas(peminjamanRuangan.getFasilitas());
 	    	peminjamanRuanganDTO.setIs_disetujui(peminjamanRuangan.getIs_disetujui());
-	    	peminjamanRuanganDTO.setDisetujui_oleh(pegawai.getNama());
+	    	
+	    	if(peminjamanRuangan.getDisetujui_oleh() == 0){
+        		peminjamanRuanganDTO.setDisetujui_oleh("");}
+	    	else {
+	    		PegawaiModel pegawai = pegawaiService.selectPegawaiById(peminjamanRuangan.getDisetujui_oleh());
+        		peminjamanRuanganDTO.setDisetujui_oleh(pegawai.getNama());
+	    	}
     	
 	    	peminjamanRuanganDTOList.add(peminjamanRuanganDTO);
 		}
 		
 		model.addAttribute("peminjamanruangList", peminjamanRuanganDTOList);
-		model.addAttribute("mahasiswa", mahasiswapjm);
-		return "viewall-history-Saya";
+		return "viewall-history-saya";
 	}
 	
 	@RequestMapping("/peminjaman/tambah")
@@ -169,20 +172,43 @@ public class PeminjamanRuanganController {
 				if(peminjamanruang.getJumlah_peserta() > ruangan.getKapasitas()) {
 					model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
 					return "add-peminjaman-gagal";
-				} else {
+				} else if(peminjamanruang.getJumlah_peserta() == 0){
+					model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
+					return "add-peminjaman-gagal";
+				}else {
 					peminjamanruang.setId_mahasiswa(userAccount.getId());
 					peminjamanruang.setIs_disetujui("2");
 					peminjamanRuanganService.addPeminjamanRuangan(peminjamanruang);
 				}
 			}
 		}
+		model.addAttribute("statusSukses", "Pengajuan peminjaman berhasil dilakukan");
 		return "add-peminjaman-sukses";
 	}
 	
 	@RequestMapping("/peminjaman/{id_peminjaman}/konfirmasi")
-	public String updateStatus(){
-		// TODO Auto-generated method stub
-		return null;
+	public String updateStatus(Model model, @PathVariable(value ="id_peminjaman", required = false)String id_peminjaman, 
+			@RequestParam(value = "confirmStatus", required =false) String confirmStatus){
+		UserAccountModel userAccount = userAccountService.selectUserAccount();
+		model.addAttribute("userAccount", userAccount);
+		
+		int id = Integer.parseInt(id_peminjaman);
+		
+		PeminjamanRuanganModel peminjamanRuangan = peminjamanRuanganService.selectPeminjamanRuangan(id);
+		
+		
+		if(confirmStatus.equals("disetujui")){
+			if(peminjamanRuanganService.checkAvailabilityRuangan(peminjamanRuangan) > 0) {
+				model.addAttribute("statusGagal", "Ruangan telah dipinjam oleh mahasiswa lain");
+				return "confirmation-peminjaman-gagal";
+			} else {
+				peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "1", userAccount.getId());
+			}
+		} else {
+			peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "0", userAccount.getId());
+		}		
+		
+		return "confirmation-peminjaman-sukses";
 	}
 	
 	@RequestMapping("/peminjaman/tersedia")
@@ -211,10 +237,7 @@ public class PeminjamanRuanganController {
 					}
 				}
 			}
-		
-			
-		
-			model.addAttribute("ruang", listRuang);
+					model.addAttribute("ruang", listRuang);
 			model.addAttribute("tanggal_awal", tanggal_awal);
 			model.addAttribute("waktu_awal", waktu_awal);
 			model.addAttribute("tanggal_akhir", tanggal_akhir);

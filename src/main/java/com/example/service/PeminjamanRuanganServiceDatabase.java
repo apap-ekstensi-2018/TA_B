@@ -46,9 +46,9 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	}
 
 	@Override
-	public void updateStatusPeminjamanRuangan(int id_peminjaman, String status) {
-		// TODO Auto-generated method stub
-		
+	public void updateStatusPeminjamanRuangan(int id_peminjaman, String status, int id_pegawai) {
+		log.info("update status peminjaman ruangan");
+		peminjamanRuangMapper.updateStatusPeminjamanRuangan(id_peminjaman, status, id_pegawai);		
 	}
 	/*
 	@Override
@@ -75,6 +75,30 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 	public int checkAvailabilityRuangan(PeminjamanRuanganModel peminjamanRuangan) {
 		log.info("cek daftar peminajaman ruang");
 		return peminjamanRuangMapper.checkAvailabilityRuangan(peminjamanRuangan);
+	}
+
+	@Override
+	public int quantityTotalStatusPeminjamanPending(String today_date) {
+		log.info("select quantity peminjaman dengan status pending");
+		return peminjamanRuangMapper.quantityTotalStatusPeminjamanPending(today_date);
+	}
+
+	@Override
+	public int quantityToatalRuanganDigunakan(String today_date) {
+		log.info("select quantity ruangan digunakan");
+		return peminjamanRuangMapper.quantityToatalRuanganDigunakan(today_date);
+	}
+
+	@Override
+	public List<int[]> selectTop5ruangan() {
+		log.info("select top 5 ruangan yang sering dipinjam");
+		return peminjamanRuangMapper.selectTop5ruangan();
+	}
+
+	@Override
+	public int checkRuanganOnHistoryPeminjaman(int id_ruangan) {
+		log.info("cek data ruangan pada history peminjaman");
+		return peminjamanRuangMapper.checkRuanganOnHistoryPeminjaman(id_ruangan);
 	}
 	
 	//	@Override

@@ -21,9 +21,17 @@ public interface PeminjamanRuanganService {
 	
 	void addPeminjamanRuangan(PeminjamanRuanganModel peminjamanRuangan);
 	
-	void updateStatusPeminjamanRuangan(int id_peminjaman, String status);
+	void updateStatusPeminjamanRuangan(int id_peminjaman, String status, int id_pegawai);
 	
 	int checkAvailabilityRuangan(PeminjamanRuanganModel peminjamanRuangan);
+	
+	int quantityTotalStatusPeminjamanPending(String today_date);
+	
+	int quantityToatalRuanganDigunakan(String today_date);
+	
+	List<int[]> selectTop5ruangan();
+	
+	int checkRuanganOnHistoryPeminjaman(int id_ruangan);
 	
 	//void selectIdPeminjamanRuangans ();
 	

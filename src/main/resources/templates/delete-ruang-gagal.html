@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="icon" href="/images/favicon-s.ico" type="image/ico" />
+	 
+	<title>Sistem Informasi Ruangan</title>
+	 
+	<!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md footer_fixed">
+	<div class="container body">
+		<div class="main_container">
+		
+			<div   th:replace = "fragments/fragment :: navigation" ></div>
+	  
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Hapus Data Ruangan</h3>
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+					
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-8 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2> Status Peminjaman Ruangan</h2>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x-content">
+									<br/>
+                    					<h3> Data ruang GAGAL dihapus!</h3>
+                    				<br/>
+                    					<h5 th:text="${errorMsg}"></h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+	 
+			<!-- footer content -->
+		        <footer>
+		          <div class="pull-right">
+		            &copy; <script>document.write(new Date().getFullYear())</script> <a class="green" href="www.ui.ac.id">Universitas Indonesia</a>, APAP 2017/2018 SI Ekstensi
+		          </div>
+		          <div class="clearfix"></div>
+		        </footer>
+			<!-- /footer content -->
+		</div>
+	</div>
+    <!-- jQuery -->
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/vendors/nprogress/nprogress.js"></script>
+    <!-- jQuery custom content scroller -->
+    <script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	
+    <!-- Custom Theme Scripts -->
+    <script src="/build/js/custom.min.js"></script>
+</body>
+</html>

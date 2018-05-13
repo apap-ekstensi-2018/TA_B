@@ -23,6 +23,9 @@ public interface RuanganMapper {
     @Select("select * from ruang where nama like #{nama}")
     RuanganModel selectRuanganByNama(@Param("nama")String nama);
     
+    @Select("select * from ruang where nama = #{nama} and id <> #{id}")
+    RuanganModel selectRuanganByNamaByNotId(@Param("nama")String nama,@Param("id")int id);
+    
     @Insert("insert into ruang (nama, kapasitas) VALUES (#{nama}, #{kapasitas})")
     void addRuangan (RuanganModel ruanganModel);
     

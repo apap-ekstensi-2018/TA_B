@@ -37,7 +37,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Available Ruangan</h3>
+							<h3>Ruangan Tersedia</h3>
 						</div>
 					</div>
 					
@@ -102,7 +102,7 @@
 											
 											
 											<div class="pull-right">
-												<button class="btn btn-success" type="submit" value="save">Cari</button>
+											<button type="submit" class="btn btn-round btn-primary" value="save">Cari</button>
 											</div>
                     						</form>
 
@@ -148,11 +148,21 @@
 	<!-- Initialize datetimepicker -->
 	<script>
 	    
-	    $('#myDatepicker1').datetimepicker({format: 'YYYY-MM-DD'});
+	    $('#myDatepicker1').datetimepicker({
+	    	showTodayButton: true,
+	    	format: 'YYYY-MM-DD',
+	    	sideBySide: true,
+	    	}).on('dp.change', function(e) {
+	    	  $('#myDatepicker3').data("DateTimePicker").minDate(e.date)
+	    });
 	    
 	    $('#myDatepicker2').datetimepicker({format: 'HH:mm'});
 	    
-	    $('#myDatepicker3').datetimepicker({format: 'YYYY-MM-DD'});
+	    $('#myDatepicker3').datetimepicker({
+	    	showTodayButton: true,
+	    	format: 'YYYY-MM-DD',
+	    	sideBySide: true
+	    });
 	    
 	    $('#myDatepicker4').datetimepicker({format: 'HH:mm'});
 	    
