@@ -37,7 +37,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>View All Ruangan</h3>
+							<h3>Riwayat Peminjaman</h3>
 						</div>
 					</div>
 					
@@ -47,7 +47,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Tabel Riwayat Peminjaman Ruangan</h2>
+									<h2> Riwayat Peminjaman Ruangan Mahasiswa</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
@@ -57,8 +57,6 @@
 	                        					<tr class="headings">
 						                         <th class="column-title">No</th>
 						                         <th class="column-title">Ruang </th>
-						                         <th class="column-title">Nama Mahasiswa</th>
-						                         <th class="column-title">NPM</th>
 							                     <th class="column-title">Waktu Mulai</th>
 							                     <th class="column-title">Waktu Selesai</th>
 						                         <th class="column-title">Tanggal Mulai</th>
@@ -76,10 +74,9 @@
                         					<tbody>
 	                       					<tr class="pointer" th:each="peminjamanruangList,iterationStatus: ${peminjamanruangList}">
 	         	           						<td th:text="' ' + ${iterationStatus.count}"></td>
-	                        					<td th:text="' ' + ${peminjamanruangList.id}"></td>
-	                        						<td th:text="' ' + ${mahasiswa.nama}"></td>
-	                        						<td th:text="' ' + ${mahasiswa.npm}"></td>
-	                        						<td th:text="' ' + ${peminjamanruangList.waktu_mulai}"></td>
+													<td th:text="' ' + ${peminjamanruangList.ruangan}"></td>
+													<td th:text="' ' + ${peminjamanruangList.waktu_mulai}"></td>
+
 	                        						<td th:text="' ' + ${peminjamanruangList.waktu_selesai}"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.tanggal_mulai}"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.tanggal_selesai}"></td>
@@ -87,11 +84,13 @@
 	                        						<td th:text="' ' + ${peminjamanruangList.keterangan}"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.jumlah_peserta}"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.fasilitas}"></td>
-	                        						<td th:text="${peminjamanruangList.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
+	                        						<td th:if="${peminjamanruangList.is_disetujui} == '1'" th:text="'Telah Disetujui'"></td>
+	                        						<td th:if="${peminjamanruangList.is_disetujui} == '0'" th:text="'Ditolak'"></td>
+	                        						<td th:if="${peminjamanruangList.is_disetujui} == '2'" th:text="'Pending'"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.disetujui_oleh}"></td>
 	                        						<td class="a-center ">
-	                        							<a class="blue" th:href="'/peminjaman/view/' + ${peminjamanruangList.id}"> View
-	                        							</a>
+	                        						<a th:href="'/peminjaman/view/' + ${peminjamanruangList.id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View</a>
+	                        						
 	                        							
 	                        						</td>
 	                        					</tr>
