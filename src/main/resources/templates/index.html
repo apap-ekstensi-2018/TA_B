@@ -25,34 +25,54 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="nav-md footer_fixed">
+<body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
 		
 			<div   th:replace = "fragments/fragment :: navigation" ></div>
-	  
-			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="">
 					<div class="page-title">
+					<h3>BERANDA </h3>
 						<div class="title_left">
-							<h3>BERANDA </h3>
 						</div>
 					</div>
-					
-					<div class="clearfix">
-						<h5 th:text="'Total Pending = ' + ${totalPending}"></h5>
-					</div>
-					
-					<div class="clearfix">
-						<h5 th:text="'Total Ruangan Dipinjam = ' + ${totalRuanganNotAvailable}"></h5>
-					</div>
-					
-					<div class="row">
-						<div class="col-md-8">
-						</div>
-						
-						<div class="col-md-4">
+					<div class="clearfix">			
+			          <div class="">
+			            <div class="row top_tiles">
+			              <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			                <div class="tile-stats">
+			                  <div class="icon"><i class="glyphicon glyphicon-hourglass"></i></div>
+			                  <div class="count" th:text="'' + ${totalPending}"></div>
+			                  <h3>Total Pending</h3>
+			                  <p>Pengajuan Peminjaman Pending</p>
+			                </div>
+			              </div>
+			              <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			                <div class="tile-stats">
+			                  <div class="icon"><i class="fa fa-building"></i></div>
+			                  <div class="count" th:text="' ' + ${totalRuanganNotAvailable}"></div>
+			                  <h3> Ruangan Terpakai</h3>
+			                  <p>Total Ruangan Terpakai</p>
+			                </div>
+			              </div>
+			              <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			                <div class="tile-stats">
+			                  <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
+			                  <div class="count">179</div>
+			                  <h3>New Sign ups</h3>
+			                  <p>Lorem ipsum psdea itgum rixt.</p>
+			                </div>
+			              </div>
+			              <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			                <div class="tile-stats">
+			                  <div class="icon"><i class="fa fa-check-square-o"></i></div>
+			                  <div class="count">179</div>
+			                  <h3>New Sign ups</h3>
+			                  <p>Lorem ipsum psdea itgum rixt.</p>
+			                </div>
+			              </div>
+			            <div class="col-md-4">
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>Kalender</h2>
@@ -66,6 +86,14 @@
 									<div class="year-calendar"></div>
 								</div>
 							</div>
+						</div>
+			            </div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-8">
+						</div>
+
 						</div>
 					</div>
 					
