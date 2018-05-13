@@ -61,6 +61,12 @@ public class RuanganServiceDatabase implements RuanganService{
 	}
 
 
+	@Override
+	public int countAllRuang() {
+		return ruanganMapper.countAllRuang();
+	}
+
+
 	
 
 }

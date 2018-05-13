@@ -49,7 +49,7 @@
 						<ul class="nav side-menu">
 							<li><a href="/"><i class="fa fa-home"></i> Beranda </a></li>
 							<li th:if="${#httpServletRequest.isUserInRole('STAF')}">
-							<a href="/peminjaman/viewall"><i class="fa fa-edit"></i> Riwayat Ruangan </a></li>
+							<a href="/peminjaman/viewall"><i class="fa fa-edit"></i> Riwayat Pengajuan </a></li>
 							
 							
 							<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a><i class="fa fa-edit"></i> Pengajuan Ruangan <span

@@ -33,6 +33,8 @@ public interface PeminjamanRuanganService {
 	
 	int checkRuanganOnHistoryPeminjaman(int id_ruangan);
 	
+	int countPengajuanPeminjamanThisMonth(String month);
+	
 	//void selectIdPeminjamanRuangans ();
 	
 	//List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm);

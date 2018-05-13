@@ -62,4 +62,8 @@ public interface PeminjamanRuanganMapper {
     @Select("select count(1) from peminjaman_ruangan where tanggal_mulai like #{month} OR tanggal_selesai like #{month}")
     int countPengajuanPeminjamanThisMonth(@Param("month")String month);
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master
