@@ -44,7 +44,7 @@
 						<div class="col-md-8 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Peminjaman Ruangan</h2>
+									<h2> Form Ubah Ruangan</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
@@ -64,12 +64,13 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Kapasitas Ruangan : </label>
 												<div class="col-md-3 col-sm-3 col-xs-6">
-													<input type="text" class="form-control" name="kapasitas" th:field="*{kapasitas}" th:value="${ruang.kapasitas}" required="required"/>
+													<input type="number" class="form-control" name="kapasitas" th:field="*{kapasitas}" th:value="${ruang.kapasitas}" required="required"/>
 												</div>
 											</div>
 											
 											<div class="pull-right">
-												<button class="btn" type="submit" value="save">Update</button>
+											<button type="submit" class="btn btn-round btn-primary" value="save">Ubah</button>
+					
 											</div>
                     						</form>
 

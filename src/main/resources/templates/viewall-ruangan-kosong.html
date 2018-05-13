@@ -39,7 +39,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Available Ruangan</h3>
+							<h3>Ruangan Tersedia</h3>
 						</div>
 					</div>
 					
@@ -105,7 +105,7 @@
 											
 											
 											<div class="pull-right">
-												<button class="btn btn-success" type="submit" value="save">Cari</button>
+												<button type="submit" class="btn btn-round btn-primary" value="save">Cari</button>
 											</div>
                     						</form>
 
@@ -120,14 +120,14 @@
 								<div class="x_title">
 									<h2> Ruangan Tersedia</h2>
 									<div class="clearfix"></div>
+									
 								</div>
-							</div>
-							<div class="x-content">
+								<div class="x-content">
 								<br/>
 								<table id="datatable" class="table table-striped jambo_table bulk_action">
 										<thead>
 	                        					<tr class="headings">
-						                         <th class="column-title">Id</th>
+						                         <th class="column-title">No</th>
 						                         <th class="column-title">Nama Ruangan </th>
 						                         <th class="column-title">Kapasitas Ruangan</th>
 	                        					</tr>
@@ -135,13 +135,15 @@
                         					<tbody>
 	                       					<tr class="pointer" th:each="ruang,iterationStatus: ${ruang}">
 	         	        
-	                        						<td th:text="' ' + ${ruang.id}"></td>
+	                        						<td th:text="' ' + ${iterationStatus.count}"></td>
 	                        						<td th:text="' ' + ${ruang.nama}"></td>
 	                        						<td th:text="' ' + ${ruang.kapasitas}"></td>
 	                        					</tr>
 	                        				</tbody>
 									</table>
 							</div>
+							</div>
+							
 						</div>
 					</div>
 					
