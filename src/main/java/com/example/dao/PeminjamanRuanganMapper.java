@@ -27,7 +27,7 @@ public interface PeminjamanRuanganMapper {
     //@Select("SELECT id, id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui, disetujui_oleh from peminjaman_ruangan")
     ArrayList<PeminjamanRuanganModel> selectArrayAllPeminjamanRuangan (); 
     
-    @Select ("select * from peminjaman_ruangan where id= #{id_mahasiswa}")
+    @Select ("select * from peminjaman_ruangan where id_mahasiswa= #{id_mahasiswa}")
     List<PeminjamanRuanganModel> selectAllPeminjamanRuanganByIdMahasiswa (@Param("id_mahasiswa")int id_mahasiswa);
 	
     @Insert("insert into peminjaman_ruangan (id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui)"

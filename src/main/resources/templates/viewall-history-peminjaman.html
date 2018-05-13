@@ -37,7 +37,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>View All Ruangan</h3>
+							<h3>Riwayat Pengajuan</h3>
 						</div>
 					</div>
 					
@@ -47,7 +47,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Tabel Riwayat Peminjaman Ruangan</h2>
+									<h2> Tabel Riwayat Pengajuan Peminjaman Ruangan</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
@@ -81,7 +81,7 @@
 	                        						<td th:text="' ' + ${peminjamanruang.npm_mahasiswa}"></td>
 	                        						<td th:text="' ' + ${peminjamanruang.waktu_mulai}"></td>
 	                        						<td th:text="' ' + ${peminjamanruang.waktu_selesai}"></td>
-	                        						<td th:text="' ' + ${peminjamanruang.tanggal_mulai}"></td>
+	                        						<td th:text="' ' + ${peminjamanruang.tanggal_mulai}"></td>											
 	                        						<td th:text="' ' + ${peminjamanruang.tanggal_selesai}"></td>
 	                        						<td th:text="' ' + ${peminjamanruang.tujuan}"></td>
 	                        						<td th:text="' ' + ${peminjamanruang.keterangan}"></td>
@@ -90,9 +90,9 @@
 	                        						<td th:text="${peminjamanruang.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
 	                        						<td th:text="' ' + ${peminjamanruang.disetujui_oleh}"></td>
 	                        						<td class="a-center ">
-	                        							<a class="blue" th:href="'/peminjaman/view/' + ${peminjamanruang.id}"> View
-	                        							</a>
-	                        							
+	                        							<a th:href="'/peminjaman/view/' + ${peminjamanruang.id}" class="btn btn-primary btn-xs">
+	                        								<i class="fa fa-folder"></i> 
+	                        							View</a>			
 	                        						</td>
 	                        					</tr>
 	                        				</tbody>
