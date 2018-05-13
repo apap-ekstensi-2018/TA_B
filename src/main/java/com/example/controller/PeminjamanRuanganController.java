@@ -190,11 +190,20 @@ public class PeminjamanRuanganController {
 		
 		int id = Integer.parseInt(id_peminjaman);
 		
+		PeminjamanRuanganModel peminjamanRuangan = peminjamanRuanganService.selectPeminjamanRuangan(id);
+		
+		
 		if(confirmStatus.equals("disetujui")){
-			peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "1", userAccount.getId());
+			if(peminjamanRuanganService.checkAvailabilityRuangan(peminjamanRuangan) > 0) {
+				model.addAttribute("statusGagal", "Ruangan telah dipinjam oleh mahasiswa lain");
+				return "confirmation-peminjaman-gagal";
+			} else {
+				peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "1", userAccount.getId());
+			}
 		} else {
 			peminjamanRuanganService.updateStatusPeminjamanRuangan(id, "0", userAccount.getId());
 		}		
+		
 		return "confirmation-peminjaman-sukses";
 	}
 	

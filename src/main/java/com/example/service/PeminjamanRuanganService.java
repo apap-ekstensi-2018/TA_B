@@ -25,6 +25,12 @@ public interface PeminjamanRuanganService {
 	
 	int checkAvailabilityRuangan(PeminjamanRuanganModel peminjamanRuangan);
 	
+	int quantityTotalStatusPeminjamanPending(String today_date);
+	
+	int quantityToatalRuanganDigunakan(String today_date);
+	
+	List<int[]> selectTop5ruangan();
+	
 	//void selectIdPeminjamanRuangans ();
 	
 	//List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm);
