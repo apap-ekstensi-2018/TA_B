@@ -182,6 +182,7 @@ public class PeminjamanRuanganController {
 				}
 			}
 		}
+		model.addAttribute("statusSukses", "Pengajuan peminjaman berhasil dilakukan");
 		return "add-peminjaman-sukses";
 	}
 	
@@ -236,8 +237,7 @@ public class PeminjamanRuanganController {
 					}
 				}
 			}
-		
-			model.addAttribute("ruang", listRuang);
+					model.addAttribute("ruang", listRuang);
 			model.addAttribute("tanggal_awal", tanggal_awal);
 			model.addAttribute("waktu_awal", waktu_awal);
 			model.addAttribute("tanggal_akhir", tanggal_akhir);

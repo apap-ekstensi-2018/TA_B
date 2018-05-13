@@ -68,11 +68,11 @@
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Mulai Peminjaman * : </label>
 												<div class="col-md-9">
 													<div class="row">
-														<div class="col-md-6">													
+														<div class="col-md-3">													
 															<div class='input-group date' id='myDatepicker1'>
 									                            <input type='text' class="form-control" name="tanggal_mulai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_mulai}" th:field="*{tanggal_mulai}"/>
-									                            <span class="input-group-addon">
-									                               <span class="glyphicon glyphicon-calendar"></span>
+									                            <span class="input-group-addon ">
+									                               <span class="glyphicon glyphicon-calendar "></span>
 									                            </span>
 									                        </div>
 								                        </div>
@@ -92,7 +92,7 @@
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Selesai Peminjaman * : </label>
 												<div class="col-md-9">
 													<div class="row">
-														<div class="col-md-6">
+														<div class="col-md-3">
 															<div class='input-group date' id='myDatepicker3'>
 									                            <input type='text' class="form-control" name="tanggal_selesai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_selesai}" th:field="*{tanggal_selesai}"/>
 									                            <span class="input-group-addon">
@@ -217,6 +217,7 @@
 	</script>
 	<!-- jquery.inputmask -->
     <script src="/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    
     
     <!-- Custom Theme Scripts -->
     <script src="/build/js/custom.min.js"></script>

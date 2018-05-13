@@ -10,6 +10,8 @@ public interface RuanganService {
 	
 	RuanganModel selectRuanganByNama (String nama);
 	
+	RuanganModel selectRuanganByNamaByNotId(String nama, int id);
+	
 	List<RuanganModel> selectAllRuangans();
 	
 	void addRuangan(RuanganModel ruanganModel);
