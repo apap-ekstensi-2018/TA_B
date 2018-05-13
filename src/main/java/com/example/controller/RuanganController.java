@@ -123,14 +123,22 @@ public class RuanganController {
 		RuanganModel existingRuang = ruanganService.selectRuangan(idruang);
 		
 		if (existingRuang != null) {
+			List<RuanganModel> ruangans = ruanganService.selectAllRuangans();
+			
 			int totalHistoryRuangan = peminjamanRuanganService.checkRuanganOnHistoryPeminjaman(idruang);
 			
 			if(totalHistoryRuangan > 0) {
-				model.addAttribute("errorMsg", "Ruangan tidak dapat dihapus, karena sudah ada history peminjaman");
+				model.addAttribute("ruang", existingRuang.getNama());
+				
+				model.addAttribute ("ruangans", ruangans);
 				return "delete-ruang-gagal";
 			} else {
+				model.addAttribute("ruang", existingRuang.getNama());
 				ruanganService.deleteRuangan(idruang);
-	    		return "delete-ruang-sukses";
+				ruangans.remove(existingRuang);
+				model.addAttribute ("ruangans", ruangans);
+				
+	    			return "delete-ruang-sukses";
 			}
     	}else {
             return "ruang-not-found";

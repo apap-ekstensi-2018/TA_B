@@ -75,7 +75,7 @@
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Mulai Peminjaman * : </label>
 												<div class="col-md-9">
 													<div class="row">
-														<div class="col-md-6">													
+														<div class="col-md-3">													
 															<div class='input-group date' id='myDatepicker1'>
 									                            <input type='text' class="form-control" name="tanggal_mulai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_mulai}" th:field="*{tanggal_mulai}"/>
 									                            <span class="input-group-addon">
@@ -99,7 +99,7 @@
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Selesai Peminjaman * : </label>
 												<div class="col-md-9">
 													<div class="row">
-														<div class="col-md-6">
+														<div class="col-md-3">
 															<div class='input-group date' id='myDatepicker3'>
 									                            <input type='text' class="form-control" name="tanggal_selesai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_selesai}" th:field="*{tanggal_selesai}"/>
 									                            <span class="input-group-addon">
@@ -133,7 +133,7 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Jumlah Peserta * : </label>
 												<div class="col-md-3 col-sm-3 col-xs-6">
-													<input type="number" class="form-control" required="required" th:value="${peminjamanruang.jumlah_peserta}" th:field="*{jumlah_peserta}"/>
+													<input type="number" min="1" class="form-control" required="required" th:value="${peminjamanruang.jumlah_peserta}" th:field="*{jumlah_peserta}"/>
 												</div>
 											</div>
 											<div class="item form-group">

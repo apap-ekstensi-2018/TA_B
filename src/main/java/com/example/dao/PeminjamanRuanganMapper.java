@@ -17,7 +17,7 @@ public interface PeminjamanRuanganMapper {
 	@Select("select * from peminjaman_ruangan where id = #{id_peminjaman}")
     PeminjamanRuanganModel selectPeminjamanRuangan (@Param("id_peminjaman") int id_peminjaman);
 
-    @Select("SELECT id, id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui, disetujui_oleh from peminjaman_ruangan ")
+    @Select("SELECT id, id_ruang, id_mahasiswa, waktu_mulai, waktu_selesai, tanggal_mulai, tanggal_selesai, tujuan, keterangan, jumlah_peserta, fasilitas, is_disetujui, disetujui_oleh from peminjaman_ruangan order by id desc")
     List<PeminjamanRuanganModel> selectAllPeminjamanRuangan ();
     
     @Select("SELECT * FROM peminjaman_ruangan WHERE (tanggal_mulai BETWEEN #{tanggal_mulai} AND #{tanggal_selesai} OR tanggal_selesai BETWEEN #{tanggal_mulai} AND #{tanggal_selesai} "
@@ -62,4 +62,8 @@ public interface PeminjamanRuanganMapper {
     @Select("select count(1) from peminjaman_ruangan where tanggal_mulai like #{month} OR tanggal_selesai like #{month}")
     int countPengajuanPeminjamanThisMonth(@Param("month")String month);
     
+
 }
+
+
+
