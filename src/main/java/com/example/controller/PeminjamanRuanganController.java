@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.dto.PeminjamanRuanganDTO;
 import com.example.model.MahasiswaModel;
+import com.example.model.OverdueSiperpusModel;
 import com.example.model.PegawaiModel;
 import com.example.model.PeminjamanRuanganModel;
 import com.example.model.RuanganModel;
 import com.example.model.UserAccountModel;
 import com.example.service.MahasiswaService;
+import com.example.service.OverdueSiperpusService;
 import com.example.service.PegawaiService;
 
 import com.example.service.PeminjamanRuanganService;
@@ -43,6 +45,9 @@ public class PeminjamanRuanganController {
 	
 	@Autowired
 	UserAccountService userAccountService;
+	
+	@Autowired
+	OverdueSiperpusService overdueSiperpusService;
 		
 	@RequestMapping("/peminjaman/view/{id_peminjaman}")
 	public String view(Model model, @PathVariable(value ="id_peminjaman", required = false)String id_peminjaman){
@@ -166,32 +171,43 @@ public class PeminjamanRuanganController {
 		} else {
 			List<RuanganModel> ruangan = ruanganService.selectAllRuangans();
 			RuanganModel ruanganGagal = ruanganService.selectRuangan(peminjamanruang.getId_ruang());
-			if(peminjamanRuanganService.checkAvailabilityRuangan(peminjamanruang) > 0) {
-				model.addAttribute("statusGagal", "Ruangan telah dipinjam oleh mahasiswa lain");
+			OverdueSiperpusModel overdueSiperpus = overdueSiperpusService.selectStatusOverdue(userAccount.getUserName());
+			int totalOverdue = Integer.parseInt(overdueSiperpus.getJumlah_literatur_overdue());
+			if(totalOverdue > 0){
+				model.addAttribute("statusGagal", "Anda mempunyai overdue peminjaman pada aplikasi Siperpus!");
 				model.addAttribute("ruanganGagal", ruanganGagal);
 				model.addAttribute("ruangan", ruangan);
 				model.addAttribute("peminjamanaruang", peminjamanruang);
 				return "add-peminjaman-gagal";
 			} else {
-				
-				if(peminjamanruang.getJumlah_peserta() > ruanganGagal.getKapasitas()) {
-					model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
+				if(peminjamanRuanganService.checkAvailabilityRuangan(peminjamanruang) > 0) {
+					model.addAttribute("statusGagal", "Ruangan telah dipinjam oleh mahasiswa lain");
 					model.addAttribute("ruanganGagal", ruanganGagal);
 					model.addAttribute("ruangan", ruangan);
 					model.addAttribute("peminjamanaruang", peminjamanruang);
 					return "add-peminjaman-gagal";
-				} else if(peminjamanruang.getJumlah_peserta() == 0){
-					model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
-					model.addAttribute("ruanganGagal", ruanganGagal);
-					model.addAttribute("ruangan", ruangan);
-					model.addAttribute("peminjamanaruang", peminjamanruang);
-					return "add-peminjaman-gagal";
-				}else {
-					peminjamanruang.setId_mahasiswa(userAccount.getId());
-					peminjamanruang.setIs_disetujui("2");
-					peminjamanRuanganService.addPeminjamanRuangan(peminjamanruang);
+				} else {
+					
+					if(peminjamanruang.getJumlah_peserta() > ruanganGagal.getKapasitas()) {
+						model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
+						model.addAttribute("ruanganGagal", ruanganGagal);
+						model.addAttribute("ruangan", ruangan);
+						model.addAttribute("peminjamanaruang", peminjamanruang);
+						return "add-peminjaman-gagal";
+					} else if(peminjamanruang.getJumlah_peserta() == 0){
+						model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
+						model.addAttribute("ruanganGagal", ruanganGagal);
+						model.addAttribute("ruangan", ruangan);
+						model.addAttribute("peminjamanaruang", peminjamanruang);
+						return "add-peminjaman-gagal";
+					}else {
+						peminjamanruang.setId_mahasiswa(userAccount.getId());
+						peminjamanruang.setIs_disetujui("2");
+						peminjamanRuanganService.addPeminjamanRuangan(peminjamanruang);
+					}
 				}
 			}
+			
 		}
 		model.addAttribute("statusSukses", "Pengajuan peminjaman berhasil dilakukan");
 		return "add-peminjaman-sukses";
