@@ -164,16 +164,27 @@ public class PeminjamanRuanganController {
 			model.addAttribute("ruangan", ruangan);
 			return "add-peminjaman-form";
 		} else {
+			List<RuanganModel> ruangan = ruanganService.selectAllRuangans();
+			RuanganModel ruanganGagal = ruanganService.selectRuangan(peminjamanruang.getId_ruang());
 			if(peminjamanRuanganService.checkAvailabilityRuangan(peminjamanruang) > 0) {
 				model.addAttribute("statusGagal", "Ruangan telah dipinjam oleh mahasiswa lain");
+				model.addAttribute("ruanganGagal", ruanganGagal);
+				model.addAttribute("ruangan", ruangan);
+				model.addAttribute("peminjamanaruang", peminjamanruang);
 				return "add-peminjaman-gagal";
 			} else {
-				RuanganModel ruangan = ruanganService.selectRuangan(peminjamanruang.getId_ruang());
-				if(peminjamanruang.getJumlah_peserta() > ruangan.getKapasitas()) {
+				
+				if(peminjamanruang.getJumlah_peserta() > ruanganGagal.getKapasitas()) {
 					model.addAttribute("statusGagal", "Jumlah peserta melebihi kapasitas ruangan");
+					model.addAttribute("ruanganGagal", ruanganGagal);
+					model.addAttribute("ruangan", ruangan);
+					model.addAttribute("peminjamanaruang", peminjamanruang);
 					return "add-peminjaman-gagal";
 				} else if(peminjamanruang.getJumlah_peserta() == 0){
 					model.addAttribute("statusGagal", "Jumlah peserta tidak boleh 0");
+					model.addAttribute("ruanganGagal", ruanganGagal);
+					model.addAttribute("ruangan", ruangan);
+					model.addAttribute("peminjamanaruang", peminjamanruang);
 					return "add-peminjaman-gagal";
 				}else {
 					peminjamanruang.setId_mahasiswa(userAccount.getId());

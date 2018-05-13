@@ -17,6 +17,8 @@
     <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
@@ -37,7 +39,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>View Pengajuan Peminjaman</h3>
+							<h3>Form Peminjaman</h3>
 						</div>
 					</div>
 					
@@ -54,30 +56,31 @@
 			                 </div>
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Peminjaman Ruangan</h2>
+									<h2> Form Peminjaman Ruangan</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
 									<br/>
                     						<form class="form-horizontal form-label-left input_mask" th:object="${peminjamanruang}" action="/peminjaman/tambah" method="post">
                     							<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Ruangan : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Ruangan * : </label>
 												<div class="col-md-3 col-sm-3 col-xs-3">
-													<select type="text" name="id_ruang" required="required">
+											
+													<select id="heard" class="form-control" name="id_ruang" required="required">
 													 	<option value="">--Select Ruangan--</option>
 													 	<option th:each="ruangan : ${ruangan}" th:text="${ruangan.nama}" required="required" th:value="${ruangan.id}" th:field="*{id_ruang}"></option>
 													 </select>
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Mulai Peminjaman : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Mulai Peminjaman * : </label>
 												<div class="col-md-9">
 													<div class="row">
-														<div class="col-md-6">													
+														<div class="col-md-3">													
 															<div class='input-group date' id='myDatepicker1'>
 									                            <input type='text' class="form-control" name="tanggal_mulai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_mulai}" th:field="*{tanggal_mulai}"/>
-									                            <span class="input-group-addon">
-									                               <span class="glyphicon glyphicon-calendar"></span>
+									                            <span class="input-group-addon ">
+									                               <span class="glyphicon glyphicon-calendar "></span>
 									                            </span>
 									                        </div>
 								                        </div>
@@ -94,10 +97,10 @@
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Selesai Peminjaman : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Selesai Peminjaman * : </label>
 												<div class="col-md-9">
 													<div class="row">
-														<div class="col-md-6">
+														<div class="col-md-3">
 															<div class='input-group date' id='myDatepicker3'>
 									                            <input type='text' class="form-control" name="tanggal_selesai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_selesai}" th:field="*{tanggal_selesai}"/>
 									                            <span class="input-group-addon">
@@ -117,32 +120,52 @@
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Tujuan Peminjaman : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Tujuan Peminjaman * : </label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" required="required" th:value="${peminjamanruang.tujuan}" th:field="*{tujuan}"/>
+													<textarea type="text" class="form-control" required="required" th:value="${peminjamanruang.tujuan}" th:field="*{tujuan}"></textarea>
+													
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Keterangan : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Keterangan * : </label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" required="required" th:value="${peminjamanruang.keterangan}" th:field="*{keterangan}"/>
+													<textarea type="text" class="form-control" required="required" th:value="${peminjamanruang.keterangan}" th:field="*{keterangan}"></textarea>
+													
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Jumlah Peserta : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Jumlah Peserta * : </label>
 												<div class="col-md-3 col-sm-3 col-xs-6">
 													<input type="number" class="form-control" required="required" th:value="${peminjamanruang.jumlah_peserta}" th:field="*{jumlah_peserta}"/>
 												</div>
 											</div>
 											<div class="item form-group">
-												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Fasilitas Ruangan : </label>
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Fasilitas Ruangan * : </label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" required="required" th:value="${peminjamanruang.fasilitas}" th:field="*{fasilitas}"/>
+												<div class="checkbox">
+						                            
+						                           
+						                              <input class="flat" type="checkbox" value="projector" th:field="*{fasilitas}"> Projector  
+						                               <br/>
+						                               <br/>
+						                              <input class="flat" type="checkbox" value="monitor" th:field="*{fasilitas}"> Monitor  
+						                              <br/>
+						                              <br/>
+						                              <input class="flat" type="checkbox" value="speaker" th:field="*{fasilitas}"> Speaker  
+						                              <br/>
+						                              <br/>
+						                              <input class="flat" type="checkbox" value="microphone" th:field="*{fasilitas}"> Microphone
+						                              </br>
+						                              <br/>
+						                            
+						                          </div>
+													
 												</div>
 											</div>
 											
 											<div class="pull-right">
-												<button class="btn" type="submit" value="save">Simpan</button>
+											<button type="submit" class="btn btn-round btn-primary" value="save">Simpan</button>
+												
 											</div>
 																						
                     						</form>
@@ -183,6 +206,8 @@
     <script src="/vendors/nprogress/nprogress.js"></script>
     <!-- jQuery custom content scroller -->
     <script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- iCheck -->
+    <script src="/vendors/iCheck/icheck.min.js"></script>
 	<!-- bootstrap-daterangepicker -->
     <script src="/vendors/moment/min/moment.min.js"></script>
     <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>

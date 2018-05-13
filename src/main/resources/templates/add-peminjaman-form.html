@@ -17,6 +17,8 @@
     <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
@@ -134,18 +136,21 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Fasilitas Ruangan * : </label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="checkbox">
-						                            <label>
+												<div >
+						                            
 						                           
-						                              <input type="checkbox" value="projector" th:field="*{fasilitas}"> Projector  </br>
-						                               <br>
-						                              <input type="checkbox" value="monitor" th:field="*{fasilitas}"> Monitor  </br>
-						                              <br>
-						                              <input type="checkbox" value="speaker" th:field="*{fasilitas}"> Speaker  </br>
-						                              <br>
-						                              <input type="checkbox" value="microphone" th:field="*{fasilitas}"> Microphone
+						                              <input class="flat" type="checkbox" value="projector" th:field="*{fasilitas}"> Projector  
+						                               <br/>
+						                               <br/>
+						                              <input class="flat" type="checkbox" value="monitor" th:field="*{fasilitas}"> Monitor  
+						                              <br/>
+						                              <br/>
+						                              <input class="flat" type="checkbox" value="speaker" th:field="*{fasilitas}"> Speaker  
+						                              <br/>
+						                              <br/>
+						                              <input class="flat" type="checkbox" value="microphone" th:field="*{fasilitas}"> Microphone
 						                              </br>
-						                            </label>
+						                            
 						                          </div>
 													
 												</div>
@@ -187,6 +192,8 @@
     <script src="/vendors/nprogress/nprogress.js"></script>
     <!-- jQuery custom content scroller -->
     <script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- iCheck -->
+    <script src="/vendors/iCheck/icheck.min.js"></script>
 	<!-- bootstrap-daterangepicker -->
     <script src="/vendors/moment/min/moment.min.js"></script>
     <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -199,7 +206,7 @@
 	    	showTodayButton: true,
 	    	format: 'YYYY-MM-DD',
 	    	sideBySide: true,
-	    	  minDate: moment()
+	    	minDate: moment()
 	    	}).on('dp.change', function(e) {
 	    	  $('#myDatepicker3').data("DateTimePicker").minDate(e.date)
 	    	});
