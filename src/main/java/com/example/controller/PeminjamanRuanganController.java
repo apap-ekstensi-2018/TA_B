@@ -152,7 +152,7 @@ public class PeminjamanRuanganController {
 		}
 		
 		model.addAttribute("peminjamanruangList", peminjamanRuanganDTOList);
-		return "viewall-history-saya";
+		return "viewall-history-mahasiswa";
 	}
 	
 	@RequestMapping("/peminjaman/tambah")
