@@ -17,6 +17,10 @@
     <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
@@ -33,7 +37,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Form Pengajuan Peminjaman</h3>
+							<h3>View Pengajuan Peminjaman</h3>
 						</div>
 					</div>
 					
@@ -42,20 +46,119 @@
 					<div class="row">
 						<div class="col-md-2"></div>
 						<div class="col-md-8 col-xs-12">
+							<div class="alert alert-danger alert-dismissible fade in" role="alert">
+			                    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			                    		<span aria-hidden="true">×</span>
+			                		</button>
+			                    <b th:text="${statusGagal}"></b> 
+			                 </div>
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Pengajuan Peminjaman Ruangan</h2>
+									<h2> Status Peminjaman Ruangan</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
 									<br/>
-                    					<h3> Pengajuan Peminjaman ruangan GAGAL!</h3>
-                    				<br/>
-                    					<h5 th:text="${statusGagal}"></h5>
+                    						<form class="form-horizontal form-label-left input_mask" th:object="${peminjamanruang}" action="/peminjaman/tambah" method="post">
+                    							<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Ruangan : </label>
+												<div class="col-md-3 col-sm-3 col-xs-3">
+													<select type="text" name="id_ruang" required="required">
+													 	<option value="">--Select Ruangan--</option>
+													 	<option th:each="ruangan : ${ruangan}" th:text="${ruangan.nama}" required="required" th:value="${ruangan.id}" th:field="*{id_ruang}"></option>
+													 </select>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Mulai Peminjaman : </label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-md-6">													
+															<div class='input-group date' id='myDatepicker1'>
+									                            <input type='text' class="form-control" name="tanggal_mulai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_mulai}" th:field="*{tanggal_mulai}"/>
+									                            <span class="input-group-addon">
+									                               <span class="glyphicon glyphicon-calendar"></span>
+									                            </span>
+									                        </div>
+								                        </div>
+														<div class="col-md-3">
+															<div class='input-group date' id='myDatepicker2'>
+									                            <input type='text' class="form-control" name="waktu_mulai" data-inputmask="'mask': '99:99'" required="required" th:value="${peminjamanruang.waktu_mulai}" th:field="*{waktu_mulai}"/>
+									                            <span class="input-group-addon">
+									                               <span class="glyphicon glyphicon-time"></span>
+									                            </span>
+									                        </div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Selesai Peminjaman : </label>
+												<div class="col-md-9">
+													<div class="row">
+														<div class="col-md-6">
+															<div class='input-group date' id='myDatepicker3'>
+									                            <input type='text' class="form-control" name="tanggal_selesai" data-inputmask="'mask': '9999-99-99'" required="required" th:value="${peminjamanruang.tanggal_selesai}" th:field="*{tanggal_selesai}"/>
+									                            <span class="input-group-addon">
+									                               <span class="glyphicon glyphicon-calendar"></span>
+									                            </span>
+									                        </div>
+														</div>
+														<div class="col-md-3">
+															<div class='input-group date' id='myDatepicker4'>
+									                            <input type='text' class="form-control" name="waktu_selesai" data-inputmask="'mask': '99:99'" required="required" th:value="${peminjamanruang.waktu_selesai}" th:field="*{waktu_selesai}"/>
+									                            <span class="input-group-addon">
+									                               <span class="glyphicon glyphicon-time"></span>
+									                            </span>
+									                        </div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Tujuan Peminjaman : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" required="required" th:value="${peminjamanruang.tujuan}" th:field="*{tujuan}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Keterangan : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" required="required" th:value="${peminjamanruang.keterangan}" th:field="*{keterangan}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Jumlah Peserta : </label>
+												<div class="col-md-3 col-sm-3 col-xs-6">
+													<input type="number" class="form-control" required="required" th:value="${peminjamanruang.jumlah_peserta}" th:field="*{jumlah_peserta}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Fasilitas Ruangan : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" required="required" th:value="${peminjamanruang.fasilitas}" th:field="*{fasilitas}"/>
+												</div>
+											</div>
+											
+											<div class="pull-right">
+												<button class="btn" type="submit" value="save">Simpan</button>
+											</div>
+																						
+                    						</form>
+                    						
+								
+								
 								</div>
 							</div>
 						</div>
-					</div>          
+					</div>
+					
+					
+					
+	            
+	            
+	            
 				</div>
 			</div>
 			<!-- /page content -->
@@ -80,7 +183,26 @@
     <script src="/vendors/nprogress/nprogress.js"></script>
     <!-- jQuery custom content scroller -->
     <script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-	
+	<!-- bootstrap-daterangepicker -->
+    <script src="/vendors/moment/min/moment.min.js"></script>
+    <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+	<!-- Initialize datetimepicker -->
+	<script>
+	    
+	    $('#myDatepicker1').datetimepicker({format: 'YYYY-MM-DD'});
+	    
+	    $('#myDatepicker2').datetimepicker({format: 'HH:mm'});
+	    
+	    $('#myDatepicker3').datetimepicker({format: 'YYYY-MM-DD'});
+	    
+	    $('#myDatepicker4').datetimepicker({format: 'HH:mm'});
+	    
+	</script>
+	<!-- jquery.inputmask -->
+    <script src="/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    
     <!-- Custom Theme Scripts -->
     <script src="/build/js/custom.min.js"></script>
 
