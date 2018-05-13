@@ -213,13 +213,35 @@
 	<!-- Initialize datetimepicker -->
 	<script>
 	    
-	    $('#myDatepicker1').datetimepicker({format: 'YYYY-MM-DD'});
-	    
-	    $('#myDatepicker2').datetimepicker({format: 'HH:mm'});
-	    
-	    $('#myDatepicker3').datetimepicker({format: 'YYYY-MM-DD'});
-	    
-	    $('#myDatepicker4').datetimepicker({format: 'HH:mm'});
+	$('#myDatepicker1').datetimepicker({
+    	showTodayButton: true,
+    	format: 'YYYY-MM-DD',
+    	sideBySide: true,
+    	minDate: moment()
+    	}).on('dp.change', function(e) {
+    	  $('#myDatepicker3').data("DateTimePicker").minDate(e.date)
+    });
+    
+    $('#myDatepicker2').datetimepicker({
+    	showTodayButton: true,
+    	format: 'HH:mm',
+    	sideBySide: true,
+    	minDate: moment()
+    	}).on('dp.change', function(e) {
+    	  $('#myDatepicker4').data("DateTimePicker").minDate(e.date)
+    	});
+    
+    $('#myDatepicker3').datetimepicker({
+    	showTodayButton: true,
+    	format: 'YYYY-MM-DD',
+    	sideBySide: true
+    });
+    
+    $('#myDatepicker4').datetimepicker({
+    	showTodayButton: true,
+    	format: 'HH:mm',
+    	sideBySide: true
+    	});
 	    
 	</script>
 	<!-- jquery.inputmask -->
