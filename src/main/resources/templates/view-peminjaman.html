@@ -33,7 +33,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>View Pengajuan Peminjaman</h3>
+							<h3>Lihat Pengajuan Peminjaman</h3>
 						</div>
 					</div>
 					
@@ -44,7 +44,7 @@
 						<div class="col-md-8 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Peminjaman Ruangan</h2>
+									<h2> Pengajuan Peminjaman Ruangan </h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
@@ -139,24 +139,22 @@
 											<div class="item form-group" th:if="${#httpServletRequest.isUserInRole('STAF')} AND ${peminjamanruang.is_disetujui} == '2'">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Persetujuan : </label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
+<<<<<<< HEAD
+													<button type="submit" class="btn btn-round btn-success" value="save">Disetujui</button>
+													<button type="submit" class="btn btn-round btn-danger"value="save">Ditolak</button>
+													
+=======
 													<button class="btn" type="submit" name="confirmStatus" value="disetujui">Disetujui</button>
 													<button class="btn" type="submit" name="confirmStatus" value="ditolak">Ditolak</button>
+>>>>>>> 60aa636a62a66743f219fcdcf1b303d31a0e354a
 												</div>
 											</div>
                     						</form>
                     						
-								
-								
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					
-					
-	            
-	            
-	            
 				</div>
 			</div>
 			<!-- /page content -->

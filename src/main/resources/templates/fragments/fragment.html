@@ -28,7 +28,7 @@
 							class="img-circle profile_img">
 					</div>
 					<div class="profile_info">
-						<span>Welcome,</span>
+						<span>Selamat Datang,</span>
 						<h2 th:text="${userAccount.name}"></h2>
 						<h2 th:text="${#httpServletRequest.remoteUser}"></h2>
 						<p>
@@ -47,21 +47,20 @@
 					<div class="menu_section">
 
 						<ul class="nav side-menu">
-							<li><a href="/"><i class="fa fa-home"></i> Home </a></li>
-							<li><a><i class="fa fa-edit"></i> Pengajuan Ruangan <span
+							<li><a href="/"><i class="fa fa-home"></i> Beranda </a></li>
+							<li th:if="${#httpServletRequest.isUserInRole('STAF')}">
+							<a href="/peminjaman/viewall"><i class="fa fa-edit"></i> Riwayat Ruangan </a></li>
+							
+							
+							<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a><i class="fa fa-edit"></i> Pengajuan Ruangan <span
 									class="fa fa-chevron-down"></span></a>
 								<ul class="nav child_menu">
-									<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a
-										href="/peminjaman/tambah">Form Pengajuan</a></li>
-									<li
-										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
-										href="#">Status Pengajuan</a></li>
-									<li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}"><a
-										href="#">History Pengajuan</a></li>
-									<li th:if="${#httpServletRequest.isUserInRole('STAF')}"><a
-										href="#">Ubah Status Peminjaman</a></li>
-									<li th:if="${#httpServletRequest.isUserInRole('STAF')}"><a
-										href="/peminjaman/viewall">All History Pengajuan</a></li>
+									<li ><a
+										href="/peminjaman/tambah">Form pengajuan</a></li>
+									
+									<li ><a
+										href="/peminjaman/riwayat">Riwayat Pengajuan</a></li>
+									
 
 								</ul></li>
 							<li><a><i class="fa fa-building-o"></i> Ruangan <span
@@ -71,10 +70,10 @@
 										href="/ruang/tambah">Tambah Ruangan</a></li>
 									<li
 										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
-										href="/peminjaman/tersedia">Available Ruangan</a></li>
+										href="/peminjaman/tersedia">Ruangan Tersedia</a></li>
 									<li
 										th:if="${#httpServletRequest.isUserInRole('MAHASISWA') or #httpServletRequest.isUserInRole('STAF')}"><a
-										href="/ruang/viewall">View All Ruangan</a></li>
+										href="/ruang/viewall">Seluruh Ruangan</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -99,9 +98,6 @@
 							<span class=" fa fa-angle-down" ></span>
 						</a>
 							<ul class="dropdown-menu dropdown-usermenu pull-right">
-								<li><a href="javascript:;"> Profile</a></li>
-								<li><a href="javascript:;"> Settings</a></li>
-								<li><a href="javascript:;">Help</a></li>
 								<li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 							</ul></li>
 					</ul>

@@ -36,7 +36,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>HOME </h3>
+							<h3>BERANDA </h3>
 						</div>
 					</div>
 					
@@ -55,7 +55,7 @@
 						<div class="col-md-4">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Calendar</h2>
+									<h2>Kalender</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       					</li>
@@ -76,7 +76,7 @@
 						<div class="col-md-4">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Portal Usage <small>Self-Service Portal enable users</small></h2>
+									<h2> Apa yang dapat kamu lakukan !</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       					</li>
@@ -87,30 +87,48 @@
 									<div class>
 										<div class="">
 						                    <ul class="to_do">
-						                      <li>
+						                    
+						                      <li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}">
 						                        <i class="fa fa-check text-success"></i> 
-						                        	Bisa ngapain aja di portal ini
+						                        	Mengajukan peminjaman ruangan
 						                      </li>
-						                      <li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}">
 						                       <i class="fa fa-check text-success"></i>
-						                       Create email address for new intern
+						                       Melihat status peminjaman
 						                      </li>
-						                      <li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}">
 						                        <i class="fa fa-check text-success"></i>
-						                        Have IT fix the network printer
+						                        Melihat riwayat peminjaman
 						                      </li>
-						                      <li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('MAHASISWA')}">
 						                        <i class="fa fa-check text-success"></i>
-						                        Copy backups to offsite location
+						                        Melihat ruangan tersedia
 						                      </li>
-						                      <li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('STAF')}">
 						                        <i class="fa fa-check text-success"></i>
-						                        Food truck fixie locavors mcsweeney
+						                       Melihat pengajuan peminjaman ruangan
 						                      </li>
-						                      <li>
-						                       <i class="fa fa-check text-success"></i>
-						                       Food truck fixie locavors mcsweeney
+						                      <li th:if="${#httpServletRequest.isUserInRole('STAF')}">
+						                        <i class="fa fa-check text-success"></i>
+						                       Mengubah status peminjaman
 						                      </li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('STAF')}">
+						                        <i class="fa fa-check text-success"></i>
+						                       Melihat status pengajuan
+						                      </li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('STAF')}">
+						                        <i class="fa fa-check text-success"></i>
+						                       Melihat seluruh riwayat peminjaman
+						                      </li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('STAF')}">
+						                        <i class="fa fa-check text-success"></i>
+						                       Menambah ruangan
+						                      </li>
+						                      <li th:if="${#httpServletRequest.isUserInRole('STAF')}">
+						                        <i class="fa fa-check text-success"></i>
+						                       Melihat seluruh ruangan
+						                      </li>
+						            
 						                    </ul>
 										</div>
 										
