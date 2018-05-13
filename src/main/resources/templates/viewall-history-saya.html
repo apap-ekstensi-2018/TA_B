@@ -86,8 +86,8 @@
 	                        						<td th:text="${peminjamanruangList.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.disetujui_oleh}"></td>
 	                        						<td class="a-center ">
-	                        							<a class="blue" th:href="'/peminjaman/view/' + ${peminjamanruangList.id}"> View
-	                        							</a>
+	                        						<a th:href="'/peminjaman/view/' + ${peminjamanruangList.id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View</a>
+	                        						
 	                        							
 	                        						</td>
 	                        					</tr>
