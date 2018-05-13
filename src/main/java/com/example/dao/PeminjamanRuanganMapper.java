@@ -56,4 +56,7 @@ public interface PeminjamanRuanganMapper {
     @Select("select id_ruang, count(id_ruang) as total from peminjaman_ruangan group by id_ruang order by total desc limit 0,5")
     List<int[]> selectTop5ruangan();
     
+    @Select("select count(1) from peminjaman_ruangan where id_ruang = #{id_ruangan}")
+    int checkRuanganOnHistoryPeminjaman(@Param("id_ruangan")int id_ruangan);
+    
 }

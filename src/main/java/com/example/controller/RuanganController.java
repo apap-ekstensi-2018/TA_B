@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.model.RuanganModel;
 import com.example.model.UserAccountModel;
+import com.example.service.PeminjamanRuanganService;
 import com.example.service.RuanganService;
 import com.example.service.UserAccountService;
 
@@ -25,6 +26,9 @@ public class RuanganController {
 	
 	@Autowired
 	UserAccountService userAccountService;
+	
+	@Autowired
+	PeminjamanRuanganService peminjamanRuanganService;
 	
 	@RequestMapping("/ruang/view/{id_ruangan}")
 	public String view(Model model,
@@ -119,8 +123,15 @@ public class RuanganController {
 		RuanganModel existingRuang = ruanganService.selectRuangan(idruang);
 		
 		if (existingRuang != null) {
-			ruanganService.deleteRuangan(idruang);
-    		return "delete-ruang-sukses";
+			int totalHistoryRuangan = peminjamanRuanganService.checkRuanganOnHistoryPeminjaman(idruang);
+			
+			if(totalHistoryRuangan > 0) {
+				model.addAttribute("errorMsg", "Ruangan tidak dapat dihapus, karena sudah ada history peminjaman");
+				return "delete-ruang-gagal";
+			} else {
+				ruanganService.deleteRuangan(idruang);
+	    		return "delete-ruang-sukses";
+			}
     	}else {
             return "ruang-not-found";
     	}

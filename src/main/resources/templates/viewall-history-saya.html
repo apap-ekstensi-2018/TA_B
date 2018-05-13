@@ -84,7 +84,9 @@
 	                        						<td th:text="' ' + ${peminjamanruangList.keterangan}"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.jumlah_peserta}"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.fasilitas}"></td>
-	                        						<td th:text="${peminjamanruangList.is_disetujui == '0'} ? 'Belum Disetujui' : 'Disetujui'"></td>
+	                        						<td th:if="${peminjamanruangList.is_disetujui} == '1'" th:text="'Telah Disetujui'"></td>
+	                        						<td th:if="${peminjamanruangList.is_disetujui} == '0'" th:text="'Ditolak'"></td>
+	                        						<td th:if="${peminjamanruangList.is_disetujui} == '2'" th:text="'Pending'"></td>
 	                        						<td th:text="' ' + ${peminjamanruangList.disetujui_oleh}"></td>
 	                        						<td class="a-center ">
 	                        							<a class="blue" th:href="'/peminjaman/view/' + ${peminjamanruangList.id}"> View

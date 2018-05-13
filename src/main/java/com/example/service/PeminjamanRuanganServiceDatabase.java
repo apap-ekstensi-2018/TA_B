@@ -94,6 +94,12 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 		log.info("select top 5 ruangan yang sering dipinjam");
 		return peminjamanRuangMapper.selectTop5ruangan();
 	}
+
+	@Override
+	public int checkRuanganOnHistoryPeminjaman(int id_ruangan) {
+		log.info("cek data ruangan pada history peminjaman");
+		return peminjamanRuangMapper.checkRuanganOnHistoryPeminjaman(id_ruangan);
+	}
 	
 	//	@Override
 //	public List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm) {

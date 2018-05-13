@@ -31,6 +31,8 @@ public interface PeminjamanRuanganService {
 	
 	List<int[]> selectTop5ruangan();
 	
+	int checkRuanganOnHistoryPeminjaman(int id_ruangan);
+	
 	//void selectIdPeminjamanRuangans ();
 	
 	//List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm);
