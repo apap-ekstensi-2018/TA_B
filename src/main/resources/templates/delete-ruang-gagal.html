@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta charset="utf-8"/>
@@ -8,7 +8,7 @@
 	<link rel="icon" href="/images/favicon-s.ico" type="image/ico" />
 	 
 	<title>Sistem Informasi Ruangan</title>
-	 
+
 	<!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -17,45 +17,82 @@
     <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- jQuery custom content scroller -->
     <link href="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- dataTables -->
+    <!-- Datatables -->
+    <link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    
     
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="nav-md footer_fixed">
+<body class="nav-md ">
 	<div class="container body">
 		<div class="main_container">
 		
 			<div   th:replace = "fragments/fragment :: navigation" ></div>
 	  
 			<!-- page content -->
-			<div class="right_col" role="main">
+			<div class="right_col" role="main" style="min-height: 1162px;">
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Hapus Data Ruangan</h3>
+							<h3>Seluruh Ruangan</h3>
 						</div>
 					</div>
 					
 					<div class="clearfix"></div>
 					
 					<div class="row">
-						<div class="col-md-2"></div>
-						<div class="col-md-8 col-xs-12">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="alert alert-danger alert-dismissible fade in" role="alert">
+			                    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			                    		<span aria-hidden="true">×</span>
+			                		</button>
+			                    <b th:text="${ruang}"> Tidak</b> tidak dapat dihapus, karena sudah ada history peminjaman
+			                 </div>
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Peminjaman Ruangan</h2>
+									<h2> Tabel Seluruh Ruangan</h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
-									<br/>
-                    					<h3> Data ruang GAGAL dihapus!</h3>
-                    				<br/>
-                    					<h5 th:text="${errorMsg}"></h5>
+							
+									<table id="datatable" class="table table-striped jambo_table bulk_action">
+										<thead>
+	                        					<tr class="headings">
+						                         <th class="column-title">No</th>
+						                         <th class="column-title">Nama Ruangan </th>
+						                         <th class="column-title">Kapasitas Ruangan</th>
+						                         <th th:if="${#httpServletRequest.isUserInRole('STAF')}" class="column-title no-link last"><span class="nobr">Action</span>
+						                         </th>
+	                        					</tr>
+	                        				</thead>
+                        					<tbody>
+	                       					<tr class="pointer" th:each="ruangan,iterationStatus: ${ruangans}">
+	                       		
+	                        						<td th:text="' ' + ${iterationStatus.count}"></td>
+	                        						<td th:text="' ' + ${ruangan.nama}"></td>
+	                        						<td th:text="' ' + ${ruangan.kapasitas}"></td>
+	                        						<td th:if="${#httpServletRequest.isUserInRole('STAF')}" class="a-center ">
+													<a th:href="'/ruang/view/' + ${ruangan.id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View</a>
+                        							<a th:href="'/ruang/ubah/' + ${ruangan.id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                        							<a th:href="'/ruang/hapus/' + ${ruangan.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                
+	                        						</td>
+	                        					</tr>
+	                        				</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
+					
+					
+					
+	            
+	            
+	            
 				</div>
 			</div>
 			<!-- /page content -->
@@ -63,13 +100,15 @@
 			<!-- footer content -->
 		        <footer>
 		          <div class="pull-right">
-		            &copy; <script>document.write(new Date().getFullYear())</script> <a class="green" href="www.ui.ac.id">Universitas Indonesia</a>, APAP 2017/2018 SI Ekstensi
+		            <div   th:replace = "fragments/fragment :: footer" ></div>
 		          </div>
 		          <div class="clearfix"></div>
 		        </footer>
 			<!-- /footer content -->
 		</div>
 	</div>
+	
+	
     <!-- jQuery -->
     <script src="/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -80,8 +119,13 @@
     <script src="/vendors/nprogress/nprogress.js"></script>
     <!-- jQuery custom content scroller -->
     <script src="/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	 <!-- Datatables -->
+    <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 	
     <!-- Custom Theme Scripts -->
     <script src="/build/js/custom.min.js"></script>
+
+
 </body>
 </html>

@@ -44,7 +44,7 @@
 						<div class="col-md-8 col-xs-12">
 							<div class="alert alert-success alert-dismissible fade in" role="alert">
 			                    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			                    		<span aria-hidden="true">×</span>
+			                    		<span aria-hidden="true">ï¿½</span>
 			                		</button>
 			                    	Ruangan <b th:text="${ruang.nama}"></b> <strong>BERHASIL!</strong> ditambahkan
 			                 </div>
@@ -69,7 +69,7 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Kapasitas Ruangan : </label>
 												<div class="col-md-3 col-sm-3 col-xs-6">
-													<input type="text" class="form-control" name="kapasitas" th:field="*{kapasitas}" th:value="${ruang.kapasitas}" required="required"/>
+													<input type="number" min="1" class="form-control" name="kapasitas" th:field="*{kapasitas}" th:value="${ruang.kapasitas}" required="required"/>
 												</div>
 											</div>
 											

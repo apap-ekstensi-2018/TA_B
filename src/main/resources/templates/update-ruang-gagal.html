@@ -70,7 +70,7 @@
 											<div class="item form-group">
 												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Kapasitas Ruangan : </label>
 												<div class="col-md-3 col-sm-3 col-xs-6">
-													<input type="text" class="form-control" name="kapasitas" th:field="*{kapasitas}" th:value="${ruangExt.kapasitas}" required="required"/>
+													<input type="number" min="1" class="form-control" name="kapasitas" th:field="*{kapasitas}" th:value="${ruangExt.kapasitas}" required="required"/>
 												</div>
 											</div>
 											

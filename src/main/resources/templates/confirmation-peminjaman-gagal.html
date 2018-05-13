@@ -22,7 +22,7 @@
     <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="nav-md footer_fixed">
+<body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
 		
@@ -33,7 +33,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Konfirmasi Pengajuan Peminjaman</h3>
+							<h3>Lihat Pengajuan Peminjaman</h3>
 						</div>
 					</div>
 					
@@ -42,20 +42,119 @@
 					<div class="row">
 						<div class="col-md-2"></div>
 						<div class="col-md-8 col-xs-12">
+							<div class="alert alert-danger alert-dismissible fade in" role="alert">
+			                    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			                    		<span aria-hidden="true">�</span>
+			                		</button>
+			                    	Konfirmasi Pengajuan Peminjaman ruangan <strong>GAGAL!</strong>
+			                 </div>
 							<div class="x_panel">
 								<div class="x_title">
-									<h2> Status Konfirmasi Pengajuan Peminjaman Ruangan</h2>
+									<h2> Pengajuan Peminjaman Ruangan </h2>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x-content">
 									<br/>
-                    					<h3> Konfirmasi Pengajuan Peminjaman ruangan GAGAL!</h3>
-                    				<br/>
-                    					<h5 th:text="${statusGagal}"></h5>
+                    						<form class="form-horizontal form-label-left input_mask" method="post" action="" th:action="@{/peminjaman/{path}(path=${peminjamanruang.id})} + '/konfirmasi'">
+                    							<div>
+	                    							<input hidden="" type="hidden" class="form-control" th:value="${peminjamanruang.id}"/>
+	                    						</div>
+                    							<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Ruangan : </label>
+												<div class="col-md-3 col-sm-3 col-xs-3">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${ruangan.nama}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Nama Mahasiswa : </label>
+												<div class="col-md-6 col-sm-9 col-xs-9">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${mahasiswa.nama}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">NPM : </label>
+												<div class="col-md-3 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${mahasiswa.npm}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Mulai Peminjaman : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="row">
+														<div class="col-md-6">
+														<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.tanggal_mulai}"/>
+														</div>
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-9">
+														<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.waktu_mulai}"/>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Selesai Peminjaman : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="row">
+														<div class="col-md-6">
+														<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.tanggal_selesai}"/>
+														</div>
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-9">
+														<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.waktu_selesai}"/>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Tujuan Peminjaman : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.tujuan}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Keterangan : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.keterangan}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Jumlah Peserta : </label>
+												<div class="col-md-3 col-sm-3 col-xs-6">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.jumlah_peserta}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Fasilitas Ruangan : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${peminjamanruang.fasilitas}"/>
+												</div>
+											</div>
+											<div class="item form-group">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Status Peminjaman : </label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" readonly="readonly"  th:if="${peminjamanruang.is_disetujui} == '1'" value="Telah Disetujui"/>
+													<input type="text" class="form-control" readonly="readonly"  th:if="${peminjamanruang.is_disetujui} == '0'" value="Ditolak"/>
+													<input type="text" class="form-control" readonly="readonly"  th:if="${peminjamanruang.is_disetujui} == '2'" value="Pending"/>
+												</div>
+											</div>
+											<div class="item form-group" th:if="${peminjamanruang.is_disetujui} != '2'" >
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Disetujui Oleh : </label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" readonly="readonly"  th:value="${pegawai.nama}"/>
+												</div>
+											</div>
+											<div class="item form-group" th:if="${#httpServletRequest.isUserInRole('STAF')} AND ${peminjamanruang.is_disetujui} == '2'">
+												<label class="control-label col-lg-3 col-md-5 col-sm-3 col-xs-12">Persetujuan : </label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<button type="submit" class="btn btn-round btn-success" name="confirmStatus" value="save">Disetujui</button>
+													<button type="submit" class="btn btn-round btn-danger" name="confirmStatus" value="save">Ditolak</button>
+												</div>
+											</div>
+                    						</form>
+                    						
 								</div>
 							</div>
 						</div>
-					</div>          
+					</div>
 				</div>
 			</div>
 			<!-- /page content -->
