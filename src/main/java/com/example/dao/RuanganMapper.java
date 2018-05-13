@@ -34,5 +34,8 @@ public interface RuanganMapper {
     
     @Delete("DELETE from ruang where id = #{id_ruang}")
     void deleteRuangan (int id_ruang);
+    
+    @Select("select count(1) from ruang")
+    int countAllRuang ();
    
 	}

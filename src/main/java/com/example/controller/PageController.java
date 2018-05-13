@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.model.UserAccountModel;
 import com.example.service.PeminjamanRuanganService;
+import com.example.service.RuanganService;
 import com.example.service.UserAccountService;
 
 @Controller
@@ -27,6 +28,9 @@ public class PageController {
 	@Autowired
 	PeminjamanRuanganService peminjamanRuanganService;
 	
+	@Autowired
+	RuanganService ruanganService;
+	
 	@RequestMapping("/")
 	public String index (Model model) {
 		UserAccountModel userAccount = userAccountService.selectUserAccount();
@@ -37,10 +41,20 @@ public class PageController {
 		
 		int totalRuanganNotAvailable = peminjamanRuanganService.quantityToatalRuanganDigunakan(today_date);
 		
+		int toatalAllRuangan = ruanganService.countAllRuang();
+		int totalRuanganAvailable = toatalAllRuangan - totalRuanganNotAvailable;
+		
+		DateFormat dateFormatMonth = new SimpleDateFormat("yyyy-MM");
+		String month = dateFormatMonth.format(date);
+		
+		int totalPengajuanThisMonth =  peminjamanRuanganService.countPengajuanPeminjamanThisMonth(month);
+		
 		//List<int[]> top5Ruangan = peminjamanRuanganService.selectTop5ruangan();
 		
 		
 		//model.addAttribute("top5Ruangan", top5Ruangan);
+		model.addAttribute("totalPengajuanThisMonth", totalPengajuanThisMonth);
+		model.addAttribute("totalRuanganAvailable", totalRuanganAvailable);
 		model.addAttribute("totalRuanganNotAvailable", totalRuanganNotAvailable);
 		model.addAttribute("totalPending", totalPending);
 		model.addAttribute("userAccount", userAccount);

@@ -100,6 +100,12 @@ public class PeminjamanRuanganServiceDatabase implements PeminjamanRuanganServic
 		log.info("cek data ruangan pada history peminjaman");
 		return peminjamanRuangMapper.checkRuanganOnHistoryPeminjaman(id_ruangan);
 	}
+
+	@Override
+	public int countPengajuanPeminjamanThisMonth(String month) {
+		log.info("select total peminjaman bulan ini");
+		return peminjamanRuangMapper.countPengajuanPeminjamanThisMonth(month + "%");
+	}
 	
 	//	@Override
 //	public List<PeminjamanRuanganModel> selectPeminjamanRuanganByNpm(int npm) {
