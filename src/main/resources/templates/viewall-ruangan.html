@@ -58,7 +58,7 @@
 						                         <th class="column-title">No</th>
 						                         <th class="column-title">Nama Ruangan </th>
 						                         <th class="column-title">Kapasitas Ruangan</th>
-						                         <th class="column-title no-link last"><span class="nobr">Action</span>
+						                         <th th:if="${#httpServletRequest.isUserInRole('STAF')}" class="column-title no-link last"><span class="nobr">Action</span>
 						                         </th>
 	                        					</tr>
 	                        				</thead>
@@ -68,11 +68,11 @@
 	                        						<td th:text="' ' + ${iterationStatus.count}"></td>
 	                        						<td th:text="' ' + ${ruangan.nama}"></td>
 	                        						<td th:text="' ' + ${ruangan.kapasitas}"></td>
-	                        						<td class="a-center ">
+	                        						<td th:if="${#httpServletRequest.isUserInRole('STAF')}" class="a-center ">
 													<a th:href="'/ruang/view/' + ${ruangan.id}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View</a>
-	                        							<a th:href="'/ruang/ubah/' + ${ruangan.id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-	                        							<a th:href="'/ruang/hapus/' + ${ruangan.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-	                
+                        							<a th:href="'/ruang/ubah/' + ${ruangan.id}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                        							<a th:href="'/ruang/hapus/' + ${ruangan.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                
 	                        						</td>
 	                        					</tr>
 	                        				</tbody>
