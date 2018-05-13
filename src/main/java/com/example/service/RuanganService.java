@@ -21,4 +21,6 @@ public interface RuanganService {
 	void deleteRuangan(RuanganModel ruanganModel);
 	
 	void deleteRuangan(int id_ruangan);
+	
+	int countAllRuang();
 }
